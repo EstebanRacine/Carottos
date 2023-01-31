@@ -1,5 +1,78 @@
+@font-face {
+    font-family: "MoreSugarRegular";
+    src: url("/font/MoreSugar-Regular.ttf");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "MoreSugarThin";
+    src: url("/font/MoreSugar-Thin.ttf");
+    font-weight: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+nav{
+    display: grid;
+    width: 100vw;
+    height: 120px;
+    grid-template-rows: 120px;
+    grid-template-columns: 25vw repeat(auto-fit, minmax(170px, 1fr));
+    background-color: gray;
+    font-family: MoreSugarRegular, sans-serif;
+    color: white;
+    align-items: center;
+}
+
+nav a p{
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+nav > img{
+    aspect-ratio: 236/100;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    padding: 3px 0;
+    grid-row: 1/-1;
+    grid-column: 1/2;
+}
+
+nav a{
+    text-decoration: none;
+    display: block;
+    color: white;
+
+}
+
+nav a p{
+    width: max-content;
+    margin: auto;
+    height: max-content;
+    transition: color 0.5s;
+    cursor: pointer;
+}
+
+.FirstLetter{
+    transition: color 0.5s;
+}
+
+.FirstLetter:hover{
+    color: #77b255;
+}
+
+nav a p:hover{
+    color: #f4900c;
+    transition: color 0.5s;
+
+}
+
+
+
+
