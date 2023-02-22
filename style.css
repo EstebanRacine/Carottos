@@ -145,13 +145,16 @@ footer a:hover .remplissage{
     margin-bottom: 20px;
 }
 
-
+.dev{
+    cursor: default;
+}
 /*Conteneur Index*/
 
 .container{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: gray;
 }
 
 .champs1{
