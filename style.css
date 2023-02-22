@@ -10,15 +10,23 @@
     font-weight: normal;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/*COMMUN AUX DIFFERENTES PAGES*/
+
+/*Barre nav*/
+
 nav{
     display: grid;
-    width: 100vw;
+    width: 100%;
     height: 120px;
     grid-template-rows: 120px;
     grid-template-columns: 25vw repeat(auto-fit, minmax(170px, 1fr));
@@ -26,6 +34,7 @@ nav{
     font-family: MoreSugarRegular, sans-serif;
     color: white;
     align-items: center;
+    position: fixed;
 }
 
 
@@ -68,5 +77,166 @@ nav a p:hover .FirstLetter{
     color: #77b255;
 }
 
+.prefooter{
+    background-color: gray;
+    height: 110px;
+}
 
+footer{
+    background-color: dimgray;
+    height: 100px;
+    position: fixed;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 300px 1fr 300px;
+    bottom: 0;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+}
+
+footer img{
+    width: 100px;
+    height: 100px;
+    justify-self: center;
+    margin-top: 5px;
+}
+
+.reseaux{
+    width: max-content;
+    justify-self: center;
+}
+
+footer > a{
+    justify-self: end;
+    width: max-content;
+    margin-right: 10px;
+}
+
+.reseaux a > i{
+    position: relative;
+    color: white;
+}
+
+.remplissage{
+    position: absolute;
+    transition: all 0.3s;
+    opacity: 0;
+    height: 0;
+    width: 100%;
+    color: #f4900c;
+    left: 0;
+    bottom: 0;
+}
+footer a:hover .remplissage{
+    height: 100%;
+    opacity: 1;
+}
+
+.arrowTop{
+    color: white;
+    transition: all 0.3s;
+    font-size: 1.8em;
+    margin-right: 50px;
+}
+
+.arrowTop:hover{
+    color: #77b255;
+    margin-bottom: 20px;
+}
+
+
+/*Conteneur Index*/
+
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.champs1{
+    width: 100%;
+    margin-top: 120px;
+    height: 550px;
+}
+
+.champs1 img{
+    object-fit: cover;
+    aspect-ratio: 1230/550;
+    height: 100%;
+    width: 100%;
+}
+
+.Presentation{
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #f4900c;
+    font-family: MoreSugarRegular, sans-serif;
+    height: 180px;
+    font-size: 1.3em;
+    grid-template-columns: 1fr 1fr;
+}
+
+.Presentation h2{
+    height: max-content;
+    width: max-content;
+    margin: auto 0 auto auto;
+}
+
+.welcome{
+    color: #77b255;
+    font-size: 1.5em;
+}
+
+.Presentation img{
+    width: 170px;
+    height: 170px;
+    margin: auto auto auto 0;
+}
+
+.decouverte{
+    width: 100%;
+    height: 520px;
+    background-color: gray;
+    display: grid;
+    grid-template-columns: 150px 1fr 1fr 150px;
+    padding-bottom: 20px;
+}
+
+.imgDecouverte{
+    height: 500px;
+    width: 282px;
+    justify-self: center;
+    grid-column: 2/3;
+}
+
+.imgDecouverte img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 9/16;
+    border-radius: 10px;
+}
+
+#txtDecouverte{
+    color: white;
+    width: 500px;
+    font-family: Bahnschrift, sans-serif;
+    text-align: justify;
+    align-self: center;
+    text-indent: 10%;
+    grid-column: 3/4;
+    cursor: default;
+}
+
+.pub{
+    display: grid;
+    grid-template-rows: repeat(4, 125px);
+}
+
+
+
+/*Page Produits*/
 
