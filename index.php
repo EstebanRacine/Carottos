@@ -8,13 +8,9 @@
 </head>
 <body>
 <div class="container">
-    <nav>
-        <img src="/images/Carottos_Simple1b.png" alt="Logo de Carottos">
-        <a href="index.html"><p><span class="FirstLetter">A</span>ccueil</p></a>
-        <a href="siteVitrine.html"><p><span class="FirstLetter">N</span>os produits</p></a>
-        <a href="organigramme.html"><p><span class="FirstLetter">Q</span>ui sommes-nous ?</p></a>
-        <a href="contact.html"><p><span class="FirstLetter">C</span>ontact</p></a>
-    </nav>
+    <?php
+    include "fichierCommuns/header.php";
+    ?>
     <div class="champs1">
         <img src="images/carotts2.jpg" alt="Image de nos carottes">
     </div>
@@ -44,16 +40,9 @@
 <div class="prefooter">
 
 </div>
-<footer>
-    <img src="images/CAndLapin.png" alt="Logo différent">
-    <div class="reseaux">
-        <a href="https://fr-fr.facebook.com/" target="_blank"><i class="fa-brands fa-facebook-f"><span class="remplissage"><i class="fa-brands fa-facebook-f"></i></span></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram"><span class="remplissage"><i class="fa-brands fa-instagram"></i></span></i></a>
-        <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-linkedin-in"><span class="remplissage"><i class="fa-brands fa-linkedin-in"></i></span></i></a>
-    </div>
-    <a href="#" class="arrowTop"><i class="fa-solid fa-circle-arrow-up"></i></a>
-
-</footer>
+    <?php
+    include "fichierCommuns/footer.php";
+    ?>
 </div>
 
 </body>

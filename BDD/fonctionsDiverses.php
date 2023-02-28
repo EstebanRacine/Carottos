@@ -9,5 +9,3 @@ function dateLivraison($joursAvantLiv){
     $timestampLivraison = $timestampAjoute+time();
     return date("d M Y", $timestampLivraison);
 }
-
-echo dateLivraison(5);

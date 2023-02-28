@@ -12,6 +12,13 @@
     <title>Votre Produit</title>
 </head>
 <body>
+<?php
+include "fichierCommuns/header.php";
+?>
 
+
+<?php
+include "fichierCommuns/footer.php";
+?>
 </body>
 </html>

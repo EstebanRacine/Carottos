@@ -5,6 +5,12 @@
     <title>Page Dev</title>
 </head>
 <body>
+<?php
+include "fichierCommuns/header.php";
+?>
 
+<?php
+include "fichierCommuns/footer.php";
+?>
 </body>
 </html>
