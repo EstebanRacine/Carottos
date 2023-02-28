@@ -5,7 +5,7 @@ const DB_NAME = "carottos";
 const DB_USER  = "root";
 const DB_PASSWORD = "";
 
-function createConnection():PDO{
+function createConnexion():PDO{
     $dsn = "mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8;";
     try {
         $connexion = new PDO($dsn, DB_USER, DB_PASSWORD);

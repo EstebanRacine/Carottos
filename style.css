@@ -241,5 +241,77 @@ footer a:hover .remplissage{
 
 
 
-/*Page Produits*/
+/*Page Liste Produits*/
+
+.ListeProduits{
+    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(350px, max-content));;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 10px;
+    margin: 150px auto auto;
+}
+
+
+.card{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr max-content max-content max-content;
+    align-items: center;
+    background-color: darkorange;
+}
+
+.imageCard{
+    height: 100%;
+    width: 100%;
+    grid-column: 1/-1;
+}
+
+.imageCard img{
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.nomCard{
+    grid-column: 1/-1;
+    padding: 10px 0;
+    font-weight: bold;
+    width: 90%;
+    margin: auto;
+    border-bottom: 1px black solid;
+}
+
+.livraisonCard, .prixCard{
+    padding: 8px 0;
+}
+
+.livraisonCard{
+    justify-self: center;
+}
+
+
+.card p{
+    width: max-content;
+    margin: auto;
+}
+
+.livraisonCard p{
+    width: 90%;
+    margin: auto;
+}
+
+.card > a{
+    grid-column: 1/-1;
+    display: block;
+    padding: 8px 0;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+
 
