@@ -98,6 +98,7 @@ footer{
     align-items: center;
     font-size: 2em;
     color: white;
+    z-index: 3;
 }
 
 footer img{
@@ -354,6 +355,12 @@ footer a:hover .remplissage{
     justify-content: center;
     align-items: center;
     font-family: Bahnschrift, sans-serif;
+    background-color: black;
+    grid-column-gap: 1px;
+}
+
+.contact *{
+    background-color: gray;
 }
 
 .liensContact, .ordonnerReseauxContact{
@@ -372,6 +379,11 @@ footer a:hover .remplissage{
     padding: 3px;
     color: floralwhite;
     text-align: center;
+    transition: all 0.1s;
+}
+
+.liensContact a:hover, .ordonnerReseauxContact a:hover{
+    text-shadow: white 1px 1px 1px;
 }
 
 .liensContact a i, .ordonnerReseauxContact a i{
@@ -381,17 +393,30 @@ footer a:hover .remplissage{
 .directContact{
     grid-column: 1/2;
     grid-row: 1/3;
+    z-index: 2;
 }
 
 .mapsContact{
     grid-column: 2/-1;
     grid-row: 2/5;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.contact > h2, .contact > p{
+    width: max-content;
+}
+
+.mapsContact > *{
+    margin: auto;
 }
 
 .reseauxContact{
     grid-column: 1/2;
     grid-row: 4/6;
     height: 100%;
+    z-index: 2;
 }
 
 .contact h1, .contact h2, .contact p{
@@ -400,4 +425,11 @@ footer a:hover .remplissage{
 
 .VertContact{
     color: #77b255;
+}
+
+.vide{
+    height: 100%;
+    width: 100%;
+    color: gray;
+    z-index: 1;
 }
