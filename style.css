@@ -346,16 +346,15 @@ footer a:hover .remplissage{
 /*CONTACT*/
 
 .contact{
-    margin: 160px 0 auto auto;
+    margin: 160px auto auto auto;
     height: 100%;
-    width: 90%;
+    width: 80%;
     display: grid;
-    grid-template-rows: 0.4fr 15px 1fr 5px 0.7fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.4fr 50px 1fr 50px 0.7fr;
+    grid-template-columns: 1fr 2fr;
     justify-content: center;
     align-items: center;
     font-family: Bahnschrift, sans-serif;
-    background-color: black;
     grid-column-gap: 1px;
 }
 
@@ -369,7 +368,7 @@ footer a:hover .remplissage{
     border: 2px black solid;
     background-color: black;
     grid-gap: 2px;
-    width: 50%;
+    width: 75%;
     margin-top: 15px;
 }
 
@@ -410,6 +409,10 @@ footer a:hover .remplissage{
 
 .mapsContact > *{
     margin: auto;
+}
+
+.mapsContact p{
+    font-size: 1.7em;
 }
 
 .reseauxContact{
