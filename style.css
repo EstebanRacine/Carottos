@@ -29,7 +29,7 @@ nav{
     width: 100%;
     height: 120px;
     grid-template-rows: 120px;
-    grid-template-columns: 25vw repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: 25vw repeat(4, minmax(170px, 1fr)) 75px;
     background-color: gray;
     font-family: MoreSugarRegular, sans-serif;
     color: white;
@@ -55,7 +55,7 @@ nav a{
 
 }
 
-nav a p{
+nav a p, nav a i{
     width: max-content;
     margin: auto;
     height: max-content;
@@ -65,7 +65,7 @@ nav a p{
     text-align: center;
 }
 
-nav a p:hover{
+nav a p:hover, nav a i:hover{
     color: #f4900c;
 }
 
@@ -76,6 +76,11 @@ nav a p:hover{
 nav a p:hover .FirstLetter{
     color: #77b255;
 }
+
+nav i{
+    justify-self: start;
+}
+
 
 .prefooter{
     background-color: gray;
@@ -248,7 +253,7 @@ footer a:hover .remplissage{
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(350px, max-content));;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 10px;
+    grid-gap: 13px;
     margin: 150px auto auto;
 }
 
@@ -256,11 +261,19 @@ footer a:hover .remplissage{
 .card{
     height: 100%;
     width: 100%;
+    margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 3fr max-content max-content max-content;
     align-items: center;
     background-color: darkorange;
+    border: 2px white solid;
+    transition: all 0.2s;
+}
+
+.card:hover{
+    height: 103%;
+    width: 103%;
 }
 
 .imageCard{
@@ -280,17 +293,18 @@ footer a:hover .remplissage{
     grid-column: 1/-1;
     padding: 10px 0;
     font-weight: bold;
-    width: 90%;
+    width: 80%;
     margin: auto;
     border-bottom: 1px black solid;
 }
+
 
 .livraisonCard, .prixCard{
     padding: 8px 0;
 }
 
-.livraisonCard{
-    justify-self: center;
+.livraisonCard p{
+    text-align: center;
 }
 
 
@@ -306,11 +320,14 @@ footer a:hover .remplissage{
 
 .card > a{
     grid-column: 1/-1;
+    width: 90%;
+    margin: auto;
     display: block;
     padding: 8px 0;
     text-decoration: none;
     color: black;
     font-weight: bold;
+    border-top: 1px black solid;
 }
 
 

@@ -27,7 +27,7 @@ $produits = getAllProduits();
         <?php
             foreach ($produits as $produit){
                 $nom = $produit['libelle'];
-                $prix = $produit['prix'];
+                $prix = number_format( $produit['prix'], 2 );
                 $img = $produit['img'];
                 $jourLivraison = dateLivraison($produit['joursAvantLivraison']);
                 echo "
@@ -41,8 +41,8 @@ $produits = getAllProduits();
                         <div class='prixCard'>
                             <p>$prix €/kg</p>
                         </div>
-                        <div class='livraison'>
-                            <p>Livraison à partir du : $jourLivraison</p>
+                        <div class='livraisonCard'>
+                            <p>Livraison à partir du :<br> $jourLivraison</p>
                         </div>
                         <a href='pageProduitUnique.php'>
                         <div class='detailsCard'>

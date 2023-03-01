@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+$_SESSION['panier'] = [];
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
