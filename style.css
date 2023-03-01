@@ -269,6 +269,7 @@ footer a:hover .remplissage{
     background-color: darkorange;
     border: 2px white solid;
     transition: all 0.2s;
+    font-family: Bahnschrift, sans-serif;
 }
 
 .card:hover{
@@ -296,6 +297,9 @@ footer a:hover .remplissage{
     width: 80%;
     margin: auto;
     border-bottom: 1px black solid;
+    color: ghostwhite;
+    font-size: 1.2em;
+    text-shadow: black 1px 1px 3px;
 }
 
 
@@ -328,7 +332,13 @@ footer a:hover .remplissage{
     color: black;
     font-weight: bold;
     border-top: 1px black solid;
+    transition: all 0.2s;
 }
 
+.card > a:hover{
+    font-size: 1.2em;
+    color: ghostwhite;
+    text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
+}
 
 

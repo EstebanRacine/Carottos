@@ -26,6 +26,7 @@ $produits = getAllProduits();
 
         <?php
             foreach ($produits as $produit){
+                $id = $produit['id'];
                 $nom = $produit['libelle'];
                 $prix = number_format( $produit['prix'], 2 );
                 $img = $produit['img'];
@@ -44,9 +45,9 @@ $produits = getAllProduits();
                         <div class='livraisonCard'>
                             <p>Livraison à partir du :<br> $jourLivraison</p>
                         </div>
-                        <a href='pageProduitUnique.php'>
+                        <a href='pageProduitUnique.php?id=$id'>
                         <div class='detailsCard'>
-                            <p>Plus de détails</p>                            
+                            <p>Plus de détails</p>                           
 </div></a>
                     </div>";
             }
