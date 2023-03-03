@@ -17,6 +17,10 @@ $salaries = [
 
 ];
 
+$clients = ["Ménages divers", "Le Restoitiers", "La PaMakDau", "Aux Vrais Produits", "Tous les établissement scolaires de Poitiers (maternelles, primaires, collèges, lycées, Crous)", "Tous mes établissement médicaux de Poitiers (hôpitals, maternités, etc...)"];
+$collaborateurs = ["SCEP (Société Castelroussine d'Elevage de Pintade)", "Bayer", "Picard"];
+
+
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 }
@@ -38,6 +42,19 @@ if(isset($_GET['id'])){
     <?php
     include "fichierCommuns/header.php";
     ?>
+    <div class="orga">
+        <div class="listeSala">
+            <h3>Liste des Salariés</h3>
+            <?php
+            foreach ($salaries as $cle=>$salarie){
+                echo "<a href='organigramme.php?id =".$cle."'>".$salarie['prenom']." ".$salarie['nom']."</a>";
+            }
+            ?>
+        </div>
+        <div class="contentSala">
+
+        </div>
+    </div>
 
 
 
