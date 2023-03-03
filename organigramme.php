@@ -44,10 +44,18 @@ if(isset($_GET['id'])){
     ?>
     <div class="orga">
         <div class="listeSala">
-            <h3>Liste des Salariés</h3>
+            <h3><span class="VertContact">L</span>iste des Salariés</h3>
             <?php
             foreach ($salaries as $cle=>$salarie){
-                echo "<a href='organigramme.php?id =".$cle."'>".$salarie['prenom']." ".$salarie['nom']."</a>";
+                if (isset($_GET['id'])){
+                    if ($_GET['id'] == $cle){
+                        echo "<a href='organigramme.php?id=".$cle."' class='on'>".$salarie['prenom']." ".$salarie['nom']."</a>";
+                    }else{
+                        echo "<a href='organigramme.php?id=".$cle."'>".$salarie['prenom']." ".$salarie['nom']."</a>";
+                    }
+                }else{
+                    echo "<a href='organigramme.php?id=".$cle."'>".$salarie['prenom']." ".$salarie['nom']."</a>";
+                }
             }
             ?>
         </div>

@@ -430,9 +430,48 @@ footer a:hover .remplissage{
     color: #77b255;
 }
 
-.vide{
-    height: 100%;
-    width: 100%;
-    color: gray;
-    z-index: 1;
+/*ORGANIGRAMME*/
+.orga{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 150px auto auto;
+    width: 95%;
+    height: 700px;
+    font-family: Bahnschrift, sans-serif;
+}
+
+.listeSala{
+    display: flex;
+    height: max-content;
+    margin: auto;
+    flex-direction: column;
+}
+
+.listeSala h3{
+    color: #f4900c;
+    border-bottom: 2px #f4900c solid;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.listeSala a{
+    display: block;
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px #f4900c solid;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    width: 80%;
+    transition: all 0.5s;
+}
+
+.on{
+    text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
+    border-bottom: 2px solid #77b255;
+}
+
+.listeSala a:hover{
+    text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
+    border-bottom: 2px solid #77b255;
 }
