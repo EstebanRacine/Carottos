@@ -353,7 +353,7 @@ footer a:hover .remplissage{
     height: 100%;
     width: 80%;
     display: grid;
-    grid-template-rows: 0.4fr 50px 1fr 50px 0.7fr;
+    grid-template-rows: 0.4fr 125px 1fr 125px 0.7fr;
     grid-template-columns: 1fr 2fr;
     justify-content: center;
     align-items: center;
@@ -636,4 +636,22 @@ footer a:hover .remplissage{
 
 .firstLetterNom{
     color: #77b255;
+}
+
+/*SCROLL-BAR-FIREFOX*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: gray;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #77b255;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: orange;
 }
