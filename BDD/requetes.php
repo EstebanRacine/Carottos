@@ -7,8 +7,6 @@ function getAllProduits(){
     $requete = $connexion -> prepare("SELECT * FROM produits");
     $requete -> execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
-
-
 }
 
 

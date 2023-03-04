@@ -28,7 +28,7 @@
         <div class="mapsContact">
             <h2><span class="VertContact">U</span>n café ? <span class="VertContact">D</span>écouvrez nos locaux !</h2>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16907.172124557423!2d0.32874647332525164!3d46.61221278078846!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fdbdb9781eeb55%3A0xa4356aa37458ff00!2s15%20Rue%20des%20Entrepreneurs%2C%2086000%20Poitiers!5e0!3m2!1sfr!2sfr!4v1677657527444!5m2!1sfr!2sfr" width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <p><span class="VertContact">1</span>5 rue des Entrepreneurs 86000 Poitiers</p>
+            <p><span class="VertContact">15</span> rue des Entrepreneurs <span class="VertContact">86000</span> Poitiers</p>
         </div>
 
         <div class="reseauxContact">
