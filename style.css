@@ -12,6 +12,8 @@
 
 html{
     scroll-behavior: smooth;
+    min-height: 100vh;
+    height: max-content;
 }
 
 *{
@@ -160,6 +162,7 @@ footer a:hover .remplissage{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    height: max-content;
     background-color: gray;
 }
 
@@ -432,13 +435,14 @@ footer a:hover .remplissage{
 
 /*ORGANIGRAMME*/
 .orga{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 250px 1fr;
     margin: 150px auto auto;
     width: 95%;
-    height: 700px;
+    height: max-content;
     font-family: Bahnschrift, sans-serif;
+    align-self: center;
 }
 
 .listeSala{
@@ -446,6 +450,10 @@ footer a:hover .remplissage{
     height: max-content;
     margin: auto;
     flex-direction: column;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    position: fixed;
+    padding: 40px 20px 20px 50px;
 }
 
 .listeSala h3{
@@ -474,4 +482,158 @@ footer a:hover .remplissage{
 .listeSala a:hover{
     text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
     border-bottom: 2px solid #77b255;
+}
+
+.contentOrgaGlobal{
+    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    grid-template-rows: 100px max-content 75px 200px 75px 300px;
+    text-align: justify;
+    grid-row: 1/-1;
+    grid-column: 2/3;
+    margin: auto;
+    color: white;
+}
+
+.contentOrgaGlobal h1, .contentOrgaGlobal h2, .marches{
+    grid-column: 1/-1;
+    /*color: #f4900c;*/
+    height: max-content;
+    text-align: center;
+    font-weight: bold;
+    width: max-content;
+    margin: auto;
+    text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
+}
+
+.contentOrgaGlobal h1{
+    border-bottom: 2px solid white;
+}
+
+.contentOrgaGlobal h2{
+    padding: 10px;
+    border: 2px solid white;
+}
+
+.contentOrgaGlobal h3{
+    border-bottom: 2px solid #f4900c;
+    font-size: 1.4em;
+    height: max-content;
+    width: max-content;
+    margin: auto;
+}
+
+.contentOrgaGlobal img{
+    object-fit: contain;
+    margin: auto;
+    width: 100%;
+    padding-right: 80px;
+}
+
+.paraOrga{
+    padding: 20px;
+    margin-bottom: 50px;
+    border-left: 3px solid #f4900c;
+}
+
+.marches > li{
+    color: white;
+    width: max-content;
+    margin: auto;
+    padding-bottom: 25px;
+    font-weight: normal;
+    text-shadow: none;
+}
+
+.contentOrgaGlobal h3{
+    color: #f4900c;
+    text-align: center;
+}
+
+.clients, .collab{
+    width: 80%;
+    margin: 0 auto auto;
+}
+
+.collab{
+    width: 250px;
+}
+
+.contentInfosSala{
+    width: 75%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 200px repeat(3, max-content);
+    text-align: justify;
+    grid-row: 1/-1;
+    grid-column: 2/3;
+    margin: auto;
+    color: white;
+    height: max-content;
+    align-self: center;
+    grid-row-gap: 5px;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: dimgray;
+}
+
+.contentInfosSala img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+#descrSala{
+    margin: auto;
+    align-self: center;
+    text-align: justify;
+    padding: 10px 10px 10px 25px;
+    width: 80%;
+    text-indent: 1cm;
+}
+
+.activitesSala{
+    grid-column: 2/3;
+    grid-row: 2/-1;
+    padding-bottom: 20px;
+}
+
+.activitesSala h1{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.activitesSala *{
+    width: 80%;
+    margin: auto;
+    padding-top: 5px;
+}
+
+#nomSala, #posteSala, #salaireSala{
+    width: max-content;
+    height: max-content;
+    align-self: center;
+    margin: auto;
+    font-size: 1.2em;
+    color: #f4900c;
+    padding-bottom: 3px;
+}
+
+.infosSala{
+    grid-column: 1/2;
+    grid-row: 2/-1;
+    padding-top: 8px;
+}
+
+#nomSala:first-letter{
+    color: #77b255;
+}
+
+.firstLetterNom{
+    color: #77b255;
 }
