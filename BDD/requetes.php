@@ -16,3 +16,20 @@ function AjoutVente($id):void{
     $requete->bindValue('id', $id);
     $requete->execute();
 }
+
+
+function getAvisById($id):array{
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT * FROM avis WHERE idProduit = :id");
+    $requete -> bindValue('id', $id);
+    $requete -> execute();
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getProduitById($id):array{
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT * FROM produits WHERE id = :id");
+    $requete -> bindValue('id', $id);
+    $requete -> execute();
+    return $requete->fetch(PDO::FETCH_ASSOC);
+}

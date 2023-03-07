@@ -1,5 +1,15 @@
 <?php
+include_once "BDD/requetes.php";
+include_once "BDD/fonctionsDiverses.php";
 
+$id = $_GET['id'];
+$avis = getAvisById($id);
+$produit = getProduitById($id);
+$img = $produit['img'];
+$nom = $produit['libelle'];
+$descr = $produit['description'];
+$prix = $produit['prix'];
+$joursLivraison = dateLivraison($produit['joursAvantLivraison'])
 
 ?>
 <!doctype html>
@@ -18,7 +28,17 @@
     <?php
     include "fichierCommuns/header.php";
     ?>
+    <div class="produit">
+        <div class="infosProduit">
 
+        </div>
+        <div class="descrProduits">
+
+        </div>
+        <div class="avisProduits">
+
+        </div>
+    </div>
 
     <?php
     include "fichierCommuns/footer.php";
