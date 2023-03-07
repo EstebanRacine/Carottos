@@ -3,9 +3,26 @@ include_once "BDD/requetes.php";
 include_once "BDD/fonctionsDiverses.php";
 
 session_start();
-$_SESSION['panier'] = [];
+if(!isset($_SESSION['panier'])) {
+    $_SESSION['panier'] = [];
+}
 
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    if (empty(trim($_POST['quantite']))){
+        $erreur = "La quantité est vide";
+    }elseif (!is_numeric($_POST['quantite'])){
+        $erreur = "La quantité n'est pas valide";
+    }else{
+        if (isset($_SESSION['panier'][$_POST['id']])){
+            $_SESSION['panier'][$_POST['id']]['quantite'] += $_POST['quantite'];
+        }else{
+            $_SESSION['panier'][$_POST['id']]['quantite'] = $_POST['quantite'];
+        }
+        $message = "Le produit a bien été ajouté au panier.";
+        echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+    }
 
+}
 
 
 $id = $_GET['id'];
@@ -52,8 +69,16 @@ if (empty($avis)){
             <p id="prixProduit"><?= $prix." €/kg" ?></p>
             <p id="joursLiv">Livraison dès le <?= $joursLivraison ?></p>
 
-            <form action="">
-                <input hidden type="text" name="quantité" value="1">
+            <form method="post">
+                <input hidden type="text" value="<?= $id ?>" name="id">
+                <div class="erreurQté">
+                    <input type="text" name="quantite" value="1" class="quantite <?php if (isset($erreur)){echo "erreur";}?>">
+                    <?php
+                    if (isset($erreur)){
+                        echo "<p>Erreur : $erreur</p>";
+                    }
+                    ?>
+                </div>
                 <input class="ajoutPanier" type="submit" value="Ajouter au panier">
             </form>
         </div>

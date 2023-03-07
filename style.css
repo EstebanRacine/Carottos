@@ -677,7 +677,7 @@ footer a:hover .remplissage{
     color: #f4900c;
     padding-left: 20px;
     font-size: 2.5em;
-    font-family: "MoreSugarThin";
+    font-family: "MoreSugarThin", sans-serif;
     grid-row: 1/2;
     grid-column: 2/-1;
     text-align: center;
@@ -693,6 +693,7 @@ footer a:hover .remplissage{
 #prixProduit{
     grid-column: 2/3;
     grid-row: 2/3;
+    padding-left: 3.5cm;
 }
 
 #joursLiv{
@@ -762,65 +763,78 @@ footer a:hover .remplissage{
 
 /*BOUTON AJOUT PANIER*/
 
-.button {
-    display: inline-block;
-    padding: 12px 24px;
-    border: 1px solid #4f4f4f;
-    border-radius: 4px;
-    transition: all 0.2s ease-in;
-    position: relative;
-    overflow: hidden;
-    font-size: 19px;
+
+.produit form{
+    grid-row: -2/-1;
+    grid-column: -3/-1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.erreurQté{
+    width: 85%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.erreurQté p{
+    color: red;
+    text-align: center;
+    width: 70%;
+    font-size: 0.8em;
+    margin: 3px auto auto;
+}
+
+.quantite{
+    border-radius: 20px;
+    height: 40%;
+    width: 40%;
     color: black;
-    z-index: 1;
+    transition: all 0.5s;
+    text-align: center;
+    align-self: center;
+    border: antiquewhite 3px solid;
+    margin: auto;
 }
 
-.button:before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%) scaleY(1) scaleX(1.25);
-    top: 100%;
-    width: 140%;
-    height: 180%;
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 50%;
-    display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-    z-index: -1;
+.erreur{
+    margin: auto auto 3px;
 }
 
-.button:after {
-    content: "";
-    position: absolute;
-    left: 55%;
-    transform: translateX(-50%) scaleY(1) scaleX(1.45);
-    top: 180%;
-    width: 160%;
-    height: 190%;
-    background-color: #39bda7;
-    border-radius: 50%;
-    display: block;
-    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-    z-index: -1;
+
+.quantite:focus{
+    outline: none;
+    border-radius: 0;
+    border-bottom: #f4900c solid 3px;
+    transform: scale(1);
+
 }
 
-.button:hover {
-    color: #ffffff;
-    border: 1px solid #39bda7;
+
+
+.ajoutPanier{
+    margin: auto;
+    background-color: #f4900c;
+    color: white;
+    border: 2px solid #dc830e;
+    border-radius: 10px;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+    font-family: Bahnschrift, sans-serif;
+    font-size: 1em;
+    transition: all 0.3s;
 }
 
-.button:hover:before {
-    top: -35%;
-    background-color: #39bda7;
-    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+.ajoutPanier:hover{
+    font-size: 1.3em;
 }
 
-.button:hover:after {
-    top: -45%;
-    background-color: #39bda7;
-    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-}
+
 
 
 /*PANIER*/
