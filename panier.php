@@ -21,6 +21,9 @@ session_start();
     include "fichierCommuns/header.php";
     ?>
 
+    <div class="panier">
+
+    </div>
 
 
 

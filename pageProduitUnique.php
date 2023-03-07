@@ -3,6 +3,10 @@ include_once "BDD/requetes.php";
 include_once "BDD/fonctionsDiverses.php";
 
 session_start();
+$_SESSION['panier'] = [];
+
+
+
 
 $id = $_GET['id'];
 $avis = getAvisById($id);
@@ -47,7 +51,11 @@ if (empty($avis)){
             <h2><?= $nom ?></h2>
             <p id="prixProduit"><?= $prix." €/kg" ?></p>
             <p id="joursLiv">Livraison dès le <?= $joursLivraison ?></p>
-            <button class="ajoutPanier"><span class="text">Ajouter au panier</span><span class="icon"><i class="fa-solid fa-cart-shopping"></i></span></button>
+
+            <form action="">
+                <input hidden type="text" name="quantité" value="1">
+                <input class="ajoutPanier" type="submit" value="Ajouter au panier">
+            </form>
         </div>
         <div class="descrProduits">
             <h2>Description du produit</h2>
