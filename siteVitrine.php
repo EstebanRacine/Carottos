@@ -3,6 +3,7 @@
 include "BDD/requetes.php";
 include "BDD/fonctionsDiverses.php";
 
+session_start();
 $produits = getAllProduits();
 
 ?>

@@ -2,14 +2,27 @@
 include_once "BDD/requetes.php";
 include_once "BDD/fonctionsDiverses.php";
 
+session_start();
+
 $id = $_GET['id'];
 $avis = getAvisById($id);
 $produit = getProduitById($id);
 $img = $produit['img'];
 $nom = $produit['libelle'];
 $descr = $produit['description'];
-$prix = $produit['prix'];
-$joursLivraison = dateLivraison($produit['joursAvantLivraison'])
+$prix = number_format( $produit['prix'], 2 );
+$joursLivraison = dateLivraison($produit['joursAvantLivraison']);
+$nbEtoilesMoyen = 0;
+
+if (empty($avis)){
+    $nbEtoilesVide = 5;
+}else {
+    foreach ($avis as $avisUnic) {
+        $nbEtoilesMoyen += $avisUnic['nbEtoiles'];
+    }
+    $nbEtoilesMoyen = round($nbEtoilesMoyen / count($avis));
+    $nbEtoilesVide = 5 - $nbEtoilesMoyen;
+}
 
 ?>
 <!doctype html>
@@ -30,13 +43,62 @@ $joursLivraison = dateLivraison($produit['joursAvantLivraison'])
     ?>
     <div class="produit">
         <div class="infosProduit">
-
+            <img src="<?= $img ?>" alt="Image du produit">
+            <h2><?= $nom ?></h2>
+            <p id="prixProduit"><?= $prix." €/kg" ?></p>
+            <p id="joursLiv">Livraison dès le <?= $joursLivraison ?></p>
+            <button class="ajoutPanier"><span class="text">Ajouter au panier</span><span class="icon"><i class="fa-solid fa-cart-shopping"></i></span></button>
         </div>
         <div class="descrProduits">
-
+            <h2>Description du produit</h2>
+            <p><?= $descr ?></p>
         </div>
         <div class="avisProduits">
+            <h2>
+                Avis
+                <?php
 
+                for($i = 0; $i<$nbEtoilesMoyen; $i++){
+                    echo "<i class='fa-solid fa-star jaune'></i>";
+                }
+                for($i = 0; $i<$nbEtoilesVide; $i++){
+                    echo "<i class='fa-regular fa-star jaune'></i>";
+                }
+
+                ?>
+
+                <div class="listeAvis">
+                    <?php
+                    foreach ($avis as $avisUnique){
+                        $user = $avisUnique['userAvis'];
+                        $texte = $avisUnique['txtAvis'];
+                        $nbEtoilesAvis = $avisUnique['nbEtoiles'];
+                        $nbEtoilesVideAvis = 5-$nbEtoilesAvis;
+                        ?>
+                    <div class="avisUnique">
+                        <h2><?= $user."  "?>
+                            <?php
+                            for($i = 0; $i<$nbEtoilesAvis; $i++){
+                                echo "<i class='fa-solid fa-star jaune'></i>";
+                            }
+                            for($i = 0; $i<$nbEtoilesVideAvis; $i++){
+                                echo "<i class='fa-regular fa-star jaune'></i>";
+                            }
+                            ?>
+                        </h2>
+
+                        <p><?= $texte ?></p>
+
+                    </div>
+
+                    <?php
+                    }
+                    ?>
+
+
+                </div>
+
+            </h2>
         </div>
     </div>
 
