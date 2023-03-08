@@ -861,11 +861,93 @@ footer a:hover .remplissage{
 
 /*PANIER*/
 
+.panier{
+    margin: 130px auto auto auto;
+    width: 90%;
+    font-family: Bahnschrift, sans-serif;
+}
+
+.panier h2{
+    color: #f4900c;
+    font-size: 3em;
+    text-align: center;
+    width: 100%;
+    font-family: "MoreSugarThin", sans-serif;
+
+}
+
+.panier h3{
+    color: #77b255;
+    width: max-content;
+    margin: 25vh auto auto;
+    font-size: 2.5em;
+    font-family: "MoreSugarThin", sans-serif;
+}
+
+.tabPanier{
+    width: 100%;
+    background-color: bisque;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.prodPanier{
+    display: grid;
+    grid-template-columns: 50px 0.6fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 115px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: #f4900c;
+    line-height: 100%;
+    border-top: 2px black solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.startTabPanier{
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+    padding-bottom: 3px;
+}
+
+.startTabPanier p:first-letter{
+    color: #77b255;
+}
+
+.supp{
+    font-family: "MoreSugarRegular";
+    font-size: 1.3em;
+    background-color: bisque;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.supp:hover{
+    transform: rotate(180deg);
+    color: #f4900c;
+}
 
 
+.prodPanier img{
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    width: 115px;
+    height: 115px;
+    border-radius: 10px;
+    margin: auto 10px auto auto;
+}
 
-
-
+.prodPanier p{
+    height: max-content;
+}
 
 
 /*SCROLL-BAR-FIREFOX*/

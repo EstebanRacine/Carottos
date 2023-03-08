@@ -3,6 +3,7 @@ include_once "BDD/requetes.php";
 include_once "BDD/fonctionsDiverses.php";
 
 session_start();
+
 if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
             $_SESSION['panier'][$_POST['id']]['quantite'] = $_POST['quantite'];
         }
         $message = "Le produit a bien été ajouté au panier.";
-        echo '<script type="text/javascript">window.alert("'.$message.'");</script>';
+        $script = '<script type="text/javascript">window.alert("'.$message.'");</script>';
     }
 
 }
@@ -75,6 +76,9 @@ if (empty($avis)){
                 <div class="erreurQté">
                     <input type="text" name="quantite" value="1" class="quantite <?php if (isset($erreur)){echo "erreur";}?>">
                     <?php
+                    if (isset($script)) {
+                        echo $script;
+                    }
                     if (isset($erreur)){
                         echo "<p>Erreur : $erreur</p>";
                     }
