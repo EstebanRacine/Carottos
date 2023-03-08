@@ -63,6 +63,7 @@ if (empty($avis)){
     include "fichierCommuns/header.php";
     ?>
     <div class="produit">
+        <a href="siteVitrine.php" id="back"><i class="fa-solid fa-arrow-left"></i></a>
         <div class="infosProduit">
             <img src="<?= $img ?>" alt="Image du produit">
             <h2><?= $nom ?></h2>

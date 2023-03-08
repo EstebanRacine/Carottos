@@ -37,6 +37,7 @@ nav{
     color: white;
     align-items: center;
     position: fixed;
+    z-index: 2;
 }
 
 
@@ -641,11 +642,12 @@ footer a:hover .remplissage{
 /*PAGE INFOS PRODUIT */
 .produit{
     background-color: white;
-    margin: 120px auto 120px;
+    margin: 130px auto 120px;
     width: 80%;
     border-radius: 10px;
     height: 1000px;
     font-family: Bahnschrift, sans-serif;
+    position: relative;
 }
 
 .produit > *{
@@ -653,6 +655,30 @@ footer a:hover .remplissage{
     margin: auto;
     text-align: justify;
 }
+
+#back{
+    width: 1.5cm;
+    position: absolute;
+    height: 1.5cm;
+    color: gray;
+    font-size: 2.5em;
+    background-color: #f4900c;
+    border-radius: 50%;
+    left: -2cm;
+    top: 0.8cm;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.6cm;
+    transition: all 0.6s;
+    z-index: 0;
+}
+
+#back:hover{
+    background-color: gray;
+    color: #f4900c;
+    transform: rotate(360deg);
+}
+
 
 .infosProduit{
     margin: 30px auto auto;
@@ -687,13 +713,13 @@ footer a:hover .remplissage{
     color: #77b255;
     font-size: 1.5em;
     margin: auto;
-    width: max-content;
+    width: 100%;
+    text-align: center;
 }
 
 #prixProduit{
     grid-column: 2/3;
     grid-row: 2/3;
-    padding-left: 3.5cm;
 }
 
 #joursLiv{
@@ -773,7 +799,7 @@ footer a:hover .remplissage{
 }
 
 .erreurQté{
-    width: 85%;
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -792,12 +818,13 @@ footer a:hover .remplissage{
 .quantite{
     border-radius: 20px;
     height: 40%;
-    width: 40%;
+    width: 60%;
     color: black;
     transition: all 0.5s;
     text-align: center;
     align-self: center;
-    border: antiquewhite 3px solid;
+    border: bisque 3px solid;
+    background-color: floralwhite;
     margin: auto;
 }
 
@@ -814,10 +841,7 @@ footer a:hover .remplissage{
 
 }
 
-
-
 .ajoutPanier{
-    margin: auto;
     background-color: #f4900c;
     color: white;
     border: 2px solid #dc830e;
@@ -828,16 +852,21 @@ footer a:hover .remplissage{
     font-family: Bahnschrift, sans-serif;
     font-size: 1em;
     transition: all 0.3s;
+    margin: auto 3cm auto auto;
 }
 
 .ajoutPanier:hover{
     font-size: 1.3em;
 }
 
-
-
-
 /*PANIER*/
+
+
+
+
+
+
+
 
 /*SCROLL-BAR-FIREFOX*/
 ::-webkit-scrollbar {
