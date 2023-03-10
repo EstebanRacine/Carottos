@@ -5,4 +5,5 @@
     <a href="organigramme.php"><p><span class="FirstLetter">Q</span>ui sommes-nous ?</p></a>
     <a href="contact.php"><p><span class="FirstLetter">C</span>ontact</p></a>
     <a href="panier.php"><i class="fa-solid fa-cart-shopping"></i></a>
+    <a href="connexion.php"><i class="fa-solid fa-user"></i></a>
 </nav>
