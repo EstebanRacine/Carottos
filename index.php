@@ -1,7 +1,16 @@
 <?php
 
 session_start();
-$_SESSION['panier'] = [];
+if (!isset($_SESSION['panier'])){
+    $_SESSION['panier'] = [];
+}
+if(!isset($_SESSION['user'])) {
+    $_SESSION['user'] = [];
+}
+if(!isset($_SESSION['user']['connecte'])) {
+    $_SESSION['user']["connecte"] = False;
+}
+
 ?>
 
 

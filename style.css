@@ -20,6 +20,11 @@ html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: default;
+}
+
+.Rouge{
+    color: red;
 }
 
 /*COMMUN AUX DIFFERENTES PAGES*/
@@ -116,15 +121,21 @@ footer img{
     justify-self: center;
 }
 
+.reseaux a *{
+    cursor: pointer;
+}
+
 footer > a{
     justify-self: end;
     width: max-content;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .reseaux a > i{
     position: relative;
     color: white;
+    cursor: pointer;
 }
 
 .remplissage{
@@ -136,6 +147,7 @@ footer > a{
     color: #f4900c;
     left: 0;
     bottom: 0;
+    cursor: pointer;
 }
 footer a:hover .remplissage{
     height: 100%;
@@ -278,8 +290,7 @@ footer a:hover .remplissage{
 }
 
 .card:hover{
-    height: 103%;
-    width: 103%;
+    transform: scale(1.05);
 }
 
 .imageCard{
@@ -338,6 +349,7 @@ footer a:hover .remplissage{
     font-weight: bold;
     border-top: 1px black solid;
     transition: all 0.2s;
+    cursor: pointer;
 }
 
 .card > a:hover{
@@ -346,6 +358,9 @@ footer a:hover .remplissage{
     text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
 }
 
+.detailsCard, .detailsCard p{
+    cursor: pointer;
+}
 
 /*CONTACT*/
 
@@ -383,6 +398,7 @@ footer a:hover .remplissage{
     color: floralwhite;
     text-align: center;
     transition: all 0.1s;
+    cursor: pointer;
 }
 
 .liensContact a:hover, .ordonnerReseauxContact a:hover{
@@ -949,6 +965,33 @@ footer a:hover .remplissage{
     height: max-content;
 }
 
+.quantiteFormPanier{
+    width: 30%;
+    padding: 3px 5px;
+    margin-right: 15px;
+    border: #f4900c 2px solid;
+    border-radius: 5px;
+    height: 0.75cm;
+    cursor: text;
+}
+
+.modifierPanier{
+    color: white;
+    border: 2px solid #77b255;
+    background-color: #f4900c;
+    padding: 3px 5px;
+    font-family: MoreSugarThin, sans-serif;
+    border-radius: 5px;
+    font-size: 0.85em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.modifierPanier:hover{
+    transform: scale(1.1);
+}
+
 /*CONNEXION*/
 .connexion{
     display: flex;
@@ -981,6 +1024,7 @@ footer a:hover .remplissage{
     height: 1cm;
     margin-bottom: 5px;
     outline: none;
+    cursor: text;
 }
 
 #buttonConnexion{

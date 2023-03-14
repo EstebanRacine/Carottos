@@ -8,9 +8,24 @@ if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
 
+if(!isset($_SESSION['user'])) {
+    $_SESSION['user'] = [];
+}
+if(!isset($_SESSION['user']['connecte'])) {
+    $_SESSION['user']["connecte"] = False;
+}
+
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     $id = $_POST['id'];
-    unset($_SESSION['panier'][$id]);
+    if (isset($_POST['supp'])) {
+        unset($_SESSION['panier'][$id]);
+    }else{
+        if (is_numeric($_POST['quantite'])) {
+            $_SESSION['panier'][$id]['quantite'] = $_POST['quantite'];
+        }else{
+            $erreur = "La valeur n'est pas reconnue.";
+        }
+    }
 }
 
 $panier = $_SESSION['panier'];
@@ -48,7 +63,7 @@ $pFinal = 0;
             <p></p>
             <p>Libellé</p>
             <p>Prix au kilo</p>
-            <p>Quantité</p>
+            <p>Quantité en kg</p>
             <p>Prix Total</p>
         </div>
 
@@ -60,6 +75,7 @@ $pFinal = 0;
             $produit = getProduitById($id);
             $nom = $produit['libelle'];
             $prix = $produit['prix'];
+            $prix = number_format($prix, 2);
             $img = $produit['img'];
             $pTotal = str_replace(",", "", number_format( $quantite*$prix, 2 ));
             $pFinal += floatval($pTotal);
@@ -67,12 +83,21 @@ $pFinal = 0;
             <div class="prodPanier">
                 <form method="post">
                     <input hidden type="text" value="<?= $id ?>" name="id">
-                    <input type="submit" value="X" class="supp">
+                    <input type="submit" value="X" class="supp" name="supp">
                 </form>
                 <img src="<?= $img ?>" alt="Image du produit">
                 <p><?= $nom ?></p>
                 <p><?= $prix." €/kg" ?></p>
-                <p><?= $quantite." kg" ?></p>
+                <form action="" method="post" autocomplete="off">
+                    <input hidden type="text" value="<?= $id ?>" name="id">
+                    <input class="quantiteFormPanier" type="number" value="<?= $quantite ?>" name="quantite" min="0.1" max="50" step="0.01">
+                    <?php
+                    if (isset($erreur)){
+                        echo "<p class='Rouge'> $erreur </p>";
+                    }
+                    ?>
+                    <input class="modifierPanier" type="submit" value="Modifier">
+                </form>
                 <p><?= $pTotal." €" ?></p>
             </div>
 
@@ -90,6 +115,23 @@ $pFinal = 0;
                 <p></p>
                 <p><?= $pFinal." €"?></p>
             </div>
+    <?php
+    if ($_SESSION['user']["connecte"]){
+    ?>
+        <div class="prodPanier validerPanier">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <form action="fichierCommuns/validerPanier.php" method="post">
+                <button class="buttonValiderPanier" type="submit">Valider le panier</button>
+            </form>
+        </div>
+    <?php
+    }
+    ?>
+
 </div>
 
         <?php
