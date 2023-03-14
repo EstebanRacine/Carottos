@@ -1055,12 +1055,69 @@ footer a:hover .remplissage{
     background-color: #77b255;
     border-radius: 5px;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .connexion a:hover{
     background-color: #f4900c;
 }
 
+/*CREATE USER*/
+
+.createUser{
+    width: 80%;
+    margin: 130px auto auto;
+    font-family: Bahnschrift, sans-serif;
+}
+
+.createUser h1{
+    text-align: center;
+    color: #f4900c;
+}
+
+.createUser form{
+    width: 50%;
+    border-radius: 5px;
+    border: 5px solid #dc830e;
+    color: white;
+    background-color: black;
+    padding: 20px 15px;
+    margin: 25px auto auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.createUser input{
+    display: block;
+    color: black;
+    cursor: text;
+}
+
+.createUser input, .createUser label{
+    width: 75%;
+    margin: 5px auto;
+}
+
+.buttonCreerUser{
+    width: 75px;
+    border-radius: 50%;
+    border: 4px solid #f1ab56;
+    cursor: pointer;
+    height: 75px;
+    font-size: 1.1em;
+    font-family: Bahnschrift, sans-serif;
+    color: white;
+    background-color: #f4900c;
+    margin: 15px auto auto;
+    transition: all 0.5s;
+}
+
+.buttonCreerUser:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #f1ab56;
+}
 
 /*SCROLL-BAR-FIREFOX*/
 ::-webkit-scrollbar {
