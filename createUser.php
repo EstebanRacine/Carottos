@@ -2,7 +2,19 @@
 
 session_start();
 if ($_SERVER['REQUEST_METHOD']=="POST"){
+    $erreur = [];
+    $nom = null;
+    $prenom = null;
+    $mail = null;
+    $dateNaiss = null;
+    $ville= null;
 
+
+    if (!isset($_POST['nom'])){
+        $erreur['nom'] = "Veuillez remplir un nom";
+    }else{
+        $nom = $_POST['nom'];
+    }
 }
 
 ?>
