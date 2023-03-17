@@ -353,13 +353,18 @@ footer a:hover .remplissage{
 }
 
 .card > a:hover{
-    font-size: 1.2em;
     color: ghostwhite;
     text-shadow: 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255, 0 0 2px #77b255;
 }
 
+.detailsCard:hover p{
+    transform: scale(1.2);
+}
+
+
 .detailsCard, .detailsCard p{
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 /*CONTACT*/
