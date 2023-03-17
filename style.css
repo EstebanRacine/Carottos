@@ -161,6 +161,10 @@ footer a:hover .remplissage{
     margin-right: 50px;
 }
 
+.arrowTop i{
+    cursor: pointer;
+}
+
 .arrowTop:hover{
     color: #77b255;
     margin-bottom: 20px;
@@ -494,6 +498,7 @@ footer a:hover .remplissage{
     font-size: 1.2em;
     width: 80%;
     transition: all 0.5s;
+    cursor: pointer;
 }
 
 .on{
@@ -1071,8 +1076,9 @@ footer a:hover .remplissage{
 
 .createUser{
     width: 80%;
-    margin: 130px auto auto;
     font-family: Bahnschrift, sans-serif;
+    height: max-content;
+    margin: 130px auto;
 }
 
 .createUser h1{
@@ -1085,8 +1091,8 @@ footer a:hover .remplissage{
     border-radius: 5px;
     border: 5px solid #dc830e;
     color: white;
-    background-color: black;
-    padding: 20px 15px;
+    background-color: #575656;
+    padding: 50px 15px 35px;
     margin: 25px auto auto;
     display: flex;
     flex-direction: column;
@@ -1098,11 +1104,23 @@ footer a:hover .remplissage{
     display: block;
     color: black;
     cursor: text;
+    height: 25px;
 }
 
-.createUser input, .createUser label{
+.createUser input, .createUser label, .infoPassword, .erreurForm{
     width: 75%;
     margin: 5px auto;
+}
+
+.infoPassword, .erreurForm{
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.erreurForm{
+    font-family: MoreSugarThin, sans-serif;
+    color: #ec3636;
+    font-size: 1.1em;
 }
 
 .buttonCreerUser{
