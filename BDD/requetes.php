@@ -69,6 +69,17 @@ function getUserByLogin($login){
     return $requete->fetch(PDO::FETCH_ASSOC);
 }
 
+function changeUser($id, $nom, $prenom, $birth, $ville, $mail){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("UPDATE users SET nomUser = :nom, prenomUser = :prenom, dateNaissance = :birth, villeUser = :ville, mailUser = :mail WHERE idUser = :id");
+    $requete->bindValue("nom", ucfirst($nom));
+    $requete->bindValue("prenom", ucfirst($prenom));
+    $requete->bindValue("birth", $birth);
+    $requete->bindValue("ville", $ville);
+    $requete->bindValue("mail", $mail);
+    $requete->bindParam('id', $id);
+    $requete ->execute();
+}
 
 //CONNEXION
 
@@ -126,6 +137,7 @@ function getCommandeByUserId($id){
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
 //CONTENU COMMANDE
 
 function getContenuByIdCommande($id){
@@ -135,3 +147,30 @@ function getContenuByIdCommande($id){
     $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getProduitsByCommande($idCommande){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT libelle, img, prix, qteProd FROM contenu INNER JOIN produits ON produits.id = contenu.idProduit WHERE idCommande = :idCommande");
+    $requete->bindParam('idCommande', $idCommande);
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getNbProdByCommandeId($id){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT COUNT(*) FROM contenu WHERE idCommande = :id");
+    $requete->bindParam('id', $id);
+    $requete->execute();
+    return $requete->fetch();
+}
+
+function getPrixTotalCommande($id){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT SUM(prix*qteProd) as Total FROM contenu INNER JOIN produits ON produits.id = contenu.idProduit WHERE idCommande = :id");
+    $requete->bindParam('id', $id);
+    $requete->execute();
+    $array =  $requete->fetch(PDO::FETCH_ASSOC);
+    return number_format($array['Total'], 2);
+}
+
+var_dump(getPrixTotalCommande(1));

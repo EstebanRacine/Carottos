@@ -2,6 +2,8 @@
 
 session_start();
 
+include_once "BDD/requetes.php";
+
 if (!isset($_SESSION['isCo'])){
     $_SESSION['isCo'] = False;
 }
@@ -10,6 +12,20 @@ if (!$_SESSION['isCo']){
     header('Location: connexion.php');
 }
 
+if ($_SERVER['REQUEST_METHOD']=="POST"){
+    if (isset($_POST['deco'])) {
+        $_SESSION['user'] = [];
+        $_SESSION['isCo'] = False;
+        header('Location: index.php');
+    }else{
+        header('Location: modifierProfil.php');
+    }
+}
+
+$commandes = getCommandeByUserId($_SESSION['user']['id']);
+
+
+$dateNaiss = date('d / m / Y', strtotime($_SESSION['user']['dateNaiss']));
 ?>
 
 
@@ -33,16 +49,39 @@ if (!$_SESSION['isCo']){
     <div class="pageUser">
         <div class="infosUsers">
             <img src="images/client.jpg" alt="Image client">
-            <p><?= $_SESSION['user']['nom']?></p>
-            <p><?= $_SESSION['user']['prenom']?></p>
-            <p><?= $_SESSION['user']['dateNaiss']?></p>
-            <p><?= $_SESSION['user']['ville']?></p>
-            <p id="mailUser"><?= $_SESSION['user']['mail']?></p>
+            <p>Nom : <br> <span class="infoPageUser"><?= $_SESSION['user']['nom']?></span></p>
+            <p>Prénom : <br> <span class="infoPageUser"> <?= $_SESSION['user']['prenom']?> </span></p>
+            <p>Date de naissance : <br> <span class="infoPageUser"><?= $dateNaiss?></span></p>
+            <p>Ville : <br> <span class="infoPageUser"><?= $_SESSION['user']['ville']?></span></p>
+            <p id="mailUser"> Mail :<br> <span class="infoPageUser"><?= $_SESSION['user']['mail']?></span></p>
+            <form method="post" id="modifier">
+                <button type="submit" name="modif" value="1"><i class="fa-sharp fa-solid fa-pen"></i>Modifier</button>
+            </form>
             <form method="post" id="deconnexion">
                 <button type="submit" name="deco" value="1"><i class="fa-sharp fa-solid fa-xmark"></i>Se déconnecter</button>
             </form>
         </div>
         <h1>Récapitulatif de vos commandes</h1>
+        <table id="listeCommandesPassees">
+            <tbody>
+
+            <?php
+            foreach ($commandes as $commande){
+            ?>
+
+                <tr>
+                    <td><i class="fa-solid fa-basket-shopping"></i></td>
+                    <td><?=  getNbProdByCommandeId($commande['idCommande'])[0]." produit(s)"?></td>
+                    <td><?= "Le ".date('d / m / Y', strtotime($commande['dateCommande']))?></td>
+                    <td><?= getPrixTotalCommande($commande['idCommande'])." €"?></td>
+                </tr>
+
+            <?php
+            }
+            ?>
+
+            </tbody>
+        </table>
     </div>
 
     <?php
