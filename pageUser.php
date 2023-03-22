@@ -32,12 +32,15 @@ if (!$_SESSION['isCo']){
 
     <div class="pageUser">
         <div class="infosUsers">
-            <img src="" alt="Image client">
+            <img src="images/client.jpg" alt="Image client">
             <p><?= $_SESSION['user']['nom']?></p>
             <p><?= $_SESSION['user']['prenom']?></p>
             <p><?= $_SESSION['user']['dateNaiss']?></p>
             <p><?= $_SESSION['user']['ville']?></p>
-            <p><?= $_SESSION['user']['mail']?></p>
+            <p id="mailUser"><?= $_SESSION['user']['mail']?></p>
+            <form method="post" id="deconnexion">
+                <button type="submit" name="deco" value="1"><i class="fa-sharp fa-solid fa-xmark"></i>Se déconnecter</button>
+            </form>
         </div>
         <h1>Récapitulatif de vos commandes</h1>
     </div>

@@ -53,8 +53,8 @@ function addUser($nom, $prenom, $mail, $login, $password, $dateNaissance, $ville
     $password = password_hash($password, PASSWORD_DEFAULT);
     $requete->bindValue("login", $login);
     $requete->bindValue("password", $password);
-    $requete->bindValue("nom", $nom);
-    $requete->bindValue("prenom", $prenom);
+    $requete->bindValue("nom", ucfirst($nom));
+    $requete->bindValue("prenom", ucfirst($prenom));
     $requete->bindValue("dateNaissance", $dateNaissance);
     $requete->bindValue("ville", $ville);
     $requete->bindValue("mail", $mail);
