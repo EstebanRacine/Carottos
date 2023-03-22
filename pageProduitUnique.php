@@ -93,7 +93,7 @@ if (empty($avis)){
 
             <p id="joursLiv">Livraison dès le <?= $joursLivraison ?></p>
 
-            <form method="post">
+            <form method="post" autocomplete="off">
                 <input hidden type="text" value="<?= $id ?>" name="id">
                 <div class="erreurQté">
                     <input type="text" name="quantite" <?php if ($stock==0){echo " value='//' ";}else{echo "value='1'";}?> class="quantite <?php if (isset($erreur)){echo "erreur";}?> <?php if ($stock==0){echo " valeurInterdite ";}?>" <?php if ($stock==0){echo " disabled ";}?>>

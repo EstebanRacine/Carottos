@@ -2,6 +2,9 @@
 
 include "connexionDB.php";
 
+//PRODUITS
+
+
 function getAllProduits(){
     $connexion = createConnexion();
     $requete = $connexion -> prepare("SELECT * FROM produits");
@@ -30,6 +33,7 @@ function changeQteStock($id, $qte, $signe){
     $requete->execute();
 }
 
+//AVIS
 
 function getAvisById($id):array{
     $connexion = createConnexion();
@@ -38,6 +42,9 @@ function getAvisById($id):array{
     $requete -> execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+//USERS
 
 function addUser($nom, $prenom, $mail, $login, $password, $dateNaissance, $ville):bool{
     $connexion = createConnexion();
@@ -53,6 +60,17 @@ function addUser($nom, $prenom, $mail, $login, $password, $dateNaissance, $ville
     $requete->bindValue("mail", $mail);
     return $requete->execute();
 }
+
+function getUserByLogin($login){
+    $connexion = createConnexion();
+    $requete = $connexion -> prepare("SELECT * FROM users where login = :login");
+    $requete -> bindParam('login', $login);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_ASSOC);
+}
+
+
+//CONNEXION
 
 function verifLogin($login){
     $login = trim($login);
@@ -81,11 +99,39 @@ function verifConnection($login, $password){
     return false;
 }
 
-function getUserByLogin($login){
+//PT LIVRAISON
+
+function getAllPointsRelais(){
     $connexion = createConnexion();
-    $requete = $connexion -> prepare("SELECT * FROM users where login = :login");
-    $requete -> bindParam('login', $login);
+    $requete = $connexion -> prepare("SELECT * FROM ptlivraisons");
     $requete->execute();
-    return $requete->fetch(PDO::FETCH_ASSOC);
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//COMMANDE
+
+function addCommande($idUser, $idLiv){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv) VALUES (:idUser, :idLiv)");
+    $requete->bindParam('idUser', $idUser);
+    $requete->bindParam('idLiv', $idLiv);
+    $requete->execute();
+}
+
+function getCommandeByUserId($id){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT * FROM commande WHERE idUser = :idUser");
+    $requete->bindParam('idUser', $id);
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//CONTENU COMMANDE
+
+function getContenuByIdCommande($id){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SElECT idProduit, qteProd FROM contenu WHERE idCommande = :idCom");
+    $requete->bindParam('idCom', $id);
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}

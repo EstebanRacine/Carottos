@@ -30,7 +30,17 @@ if (!$_SESSION['isCo']){
     include "fichierCommuns/header.php";
     ?>
 
-    <div class="attente">BLBLBLBLBLBL</div>
+    <div class="pageUser">
+        <div class="infosUsers">
+            <img src="" alt="Image client">
+            <p><?= $_SESSION['user']['nom']?></p>
+            <p><?= $_SESSION['user']['prenom']?></p>
+            <p><?= $_SESSION['user']['dateNaiss']?></p>
+            <p><?= $_SESSION['user']['ville']?></p>
+            <p><?= $_SESSION['user']['mail']?></p>
+        </div>
+        <h1>Récapitulatif de vos commandes</h1>
+    </div>
 
     <?php
     include "fichierCommuns/footer.php";

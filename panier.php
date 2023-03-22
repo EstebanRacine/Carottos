@@ -72,7 +72,8 @@ $pFinal = 0;
             <p>Libellé</p>
             <p>Prix au kilo</p>
             <p>Quantité en kg</p>
-            <p>Prix Total</p>
+            <p>Prix Total HT</p>
+            <p>Prix Total TTC</p>
         </div>
 
 
@@ -101,7 +102,7 @@ $pFinal = 0;
                 <form action="" method="post" autocomplete="off">
                     <input hidden type="text" value="<?= $quantite ?>" name="qteAvantChangement">
                     <input hidden type="text" value="<?= $id ?>" name="id">
-                    <input class="quantiteFormPanier" type="number" value="<?= $quantite ?>" name="quantite" min="0.1" max="<?= $stock ?>>" step="0.01">
+                    <input class="quantiteFormPanier" type="number" value="<?= $quantite ?>" name="quantite" min="0.1" max="<?= $quantite+$stock ?>" step="0.01">
                     <?php
                     if (isset($erreur)){
                         echo "<p class='Rouge'> $erreur </p>";
@@ -109,6 +110,7 @@ $pFinal = 0;
                     ?>
                     <input class="modifierPanier" type="submit" value="Modifier">
                 </form>
+                <p><?= number_format($pTotal/1.055, 2) ?></p>
                 <p><?= $pTotal." €" ?></p>
             </div>
 
@@ -124,12 +126,14 @@ $pFinal = 0;
                 <p></p>
                 <p></p>
                 <p></p>
+                <p></p>
                 <p><?= $pFinal." €"?></p>
             </div>
     <?php
     if ($_SESSION["isCo"]){
     ?>
         <div class="prodPanier validerPanier">
+            <p></p>
             <p></p>
             <p></p>
             <p></p>

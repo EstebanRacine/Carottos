@@ -940,7 +940,7 @@ footer a:hover .remplissage{
 
 .prodPanier{
     display: grid;
-    grid-template-columns: 50px 0.6fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 50px 0.6fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 115px;
     justify-content: center;
     text-align: center;
