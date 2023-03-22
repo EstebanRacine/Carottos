@@ -1,4 +1,34 @@
 <?php
+
+include "BDD/requetes.php";
+
+session_start();
+
+if (!isset($_SESSION['isCo'])){
+    $_SESSION['isCo'] = false;
+}else{
+    if ($_SESSION['isCo']){
+        header('Location: pageUser.php');
+    }
+}
+
+
+if ($_SERVER['REQUEST_METHOD']=="POST"){
+    if (verifConnection($_POST['login'], $_POST['password'])){
+        $_SESSION['isCo'] = true;
+        $user = getUserByLogin($_POST['login']);
+        $_SESSION['user']['login'] = $user['login'];
+        $_SESSION['user']['nom'] = $user['nomUser'];
+        $_SESSION['user']['prenom'] = $user['prenomUser'];
+        $_SESSION['user']['dateNaiss'] = $user['dateNaissance'];
+        $_SESSION['user']['ville'] = $user['villeUser'];
+        $_SESSION['user']['mail'] = $user['mailUser'];
+        $_SESSION['user']['id'] = $user['idUser'];
+        header('Location: pageUser.php');
+    }
+}
+
+
 ?>
 
 
@@ -21,8 +51,8 @@
     <div class="connexion">
         <h1><span class="VertContact">C</span>onnexion</h1>
         <form action="" method="post" autocomplete="off">
-            <input type="text" placeholder="Login">
-            <input type="password" placeholder="Mot de passe">
+            <input type="text" placeholder="Login" name="login">
+            <input type="password" placeholder="Mot de passe" name="password">
             <input type="submit" value="Connexion" id="buttonConnexion">
         </form>
         <p>Pas encore de compte ?</p>

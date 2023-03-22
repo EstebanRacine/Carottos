@@ -8,6 +8,10 @@ if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
 
+if (!isset($_SESSION['isCo'])){
+    $_SESSION['isCo'] = false;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
     if (empty(trim($_POST['quantite']))){
         $erreur = "La quantité est vide";
@@ -19,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         }else{
             $_SESSION['panier'][$_POST['id']]['quantite'] = $_POST['quantite'];
         }
+        changeQteStock($_POST['id'], $_POST['quantite'], '-');
         $message = "Le produit a bien été ajouté au panier.";
         $script = '<script type="text/javascript">window.alert("'.$message.'");</script>';
     }
@@ -32,6 +37,13 @@ $produit = getProduitById($id);
 $img = $produit['img'];
 $nom = $produit['libelle'];
 $descr = $produit['description'];
+$stock = $produit['QteStock'];
+$color = "VertContact";
+
+if ($stock < 6){
+    $color = "Rouge";
+}
+
 $prix = number_format( $produit['prix'], 2 );
 $joursLivraison = dateLivraison($produit['joursAvantLivraison']);
 $nbEtoilesMoyen = 0;
@@ -69,12 +81,22 @@ if (empty($avis)){
             <img src="<?= $img ?>" alt="Image du produit">
             <h2><?= $nom ?></h2>
             <p id="prixProduit"><?= $prix." €/kg" ?></p>
+            <?php
+            if ($stock > 0){
+                echo "<p id='stock' class='$color'> Reste en stock : $stock kg</p>";
+            }
+            else{
+                echo "<p class='Rouge'> En rupture de stock</p>";
+            }
+            ?>
+
+
             <p id="joursLiv">Livraison dès le <?= $joursLivraison ?></p>
 
             <form method="post">
                 <input hidden type="text" value="<?= $id ?>" name="id">
                 <div class="erreurQté">
-                    <input type="text" name="quantite" value="1" class="quantite <?php if (isset($erreur)){echo "erreur";}?>">
+                    <input type="text" name="quantite" <?php if ($stock==0){echo " value='//' ";}else{echo "value='1'";}?> class="quantite <?php if (isset($erreur)){echo "erreur";}?> <?php if ($stock==0){echo " valeurInterdite ";}?>" <?php if ($stock==0){echo " disabled ";}?>>
                     <?php
                     if (isset($script)) {
                         echo $script;
@@ -84,7 +106,7 @@ if (empty($avis)){
                     }
                     ?>
                 </div>
-                <input class="ajoutPanier" type="submit" value="Ajouter au panier">
+                <input class="ajoutPanier <?php if ($stock==0){echo " ajoutPanierInterdit ";}?>" type="submit" value="Ajouter au panier" <?php if ($stock==0){echo " disabled ";}?>>
             </form>
         </div>
         <div class="descrProduits">

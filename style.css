@@ -697,6 +697,11 @@ footer a:hover .remplissage{
     line-height: 1.6cm;
     transition: all 0.6s;
     z-index: 0;
+    cursor: pointer;
+}
+
+#back i{
+    cursor: pointer;
 }
 
 #back:hover{
@@ -711,7 +716,7 @@ footer a:hover .remplissage{
     display: grid;
     height: max-content;
     grid-template-columns: 420px 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 0.5fr 0.5fr 1fr;
 }
 
 .infosProduit img{
@@ -736,7 +741,6 @@ footer a:hover .remplissage{
 }
 
 .infosProduit p{
-    color: #77b255;
     font-size: 1.5em;
     margin: auto;
     width: 100%;
@@ -746,11 +750,17 @@ footer a:hover .remplissage{
 #prixProduit{
     grid-column: 2/3;
     grid-row: 2/3;
+    color: #77b255;
 }
 
 #joursLiv{
-    grid-row: 2/3;
+    grid-row: 2/4;
     grid-column: 3/-1;
+    color: #77b255;
+}
+
+#stock{
+    font-size: 1.15em;
 }
 
 .infosProduit .ajoutPanier{
@@ -852,6 +862,7 @@ footer a:hover .remplissage{
     border: bisque 3px solid;
     background-color: floralwhite;
     margin: auto;
+    cursor: text;
 }
 
 .erreur{
@@ -884,6 +895,14 @@ footer a:hover .remplissage{
 .ajoutPanier:hover{
     font-size: 1.3em;
 }
+
+.valeurInterdite, .ajoutPanierInterdit{
+    background-color: #b4b4b4;
+    cursor: not-allowed;
+    border: 1px solid gray;
+    color: black;
+}
+
 
 /*PANIER*/
 
@@ -1000,6 +1019,22 @@ footer a:hover .remplissage{
 
 .modifierPanier:hover{
     transform: scale(1.1);
+}
+
+
+#buttonValiderPanier{
+    background-color: #f4900c;
+    border-radius: 10px;
+    border: 2px solid #dc830e;
+    color: white;
+    scale: 1.1;
+    transition: all 0.5s;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#buttonValiderPanier:hover{
+    transform: scale(1.2);
 }
 
 /*CONNEXION*/
@@ -1158,4 +1193,8 @@ footer a:hover .remplissage{
 
 ::-webkit-scrollbar-thumb:hover {
     background: orange;
+}
+
+.Rouge{
+    color: red;
 }

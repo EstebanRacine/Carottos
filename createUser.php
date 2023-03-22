@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if (!isset($_SESSION['isCo'])){
+    $_SESSION['isCo'] = false;
+}
+
 $erreur = [];
 $nom = null;
 $prenom = null;
@@ -71,7 +76,17 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     }
     if ($erreur == []){
         addUser($nom, $prenom, $mail, $login, $password, $dateNaiss, $ville );
-        header("Location: index.php");
+        $_SESSION['isCo'] = true;
+        $user = getUserByLogin($_POST['login']);
+        $_SESSION['user']['login'] = $user['login'];
+        $_SESSION['user']['nom'] = $user['nomUser'];
+        $_SESSION['user']['prenom'] = $user['prenomUser'];
+        $_SESSION['user']['dateNaiss'] = $user['dateNaissance'];
+        $_SESSION['user']['ville'] = $user['villeUser'];
+        $_SESSION['user']['mail'] = $user['mailUser'];
+        $_SESSION['user']['id'] = $user['idUser'];
+        header('Location: pageUser.php');
+        header("Location: pageUser.php");
     }
 }
 

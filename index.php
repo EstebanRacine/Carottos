@@ -7,8 +7,9 @@ if (!isset($_SESSION['panier'])){
 if(!isset($_SESSION['user'])) {
     $_SESSION['user'] = [];
 }
-if(!isset($_SESSION['user']['connecte'])) {
-    $_SESSION['user']["connecte"] = False;
+
+if (!isset($_SESSION['isCo'])){
+    $_SESSION['isCo'] = false;
 }
 
 ?>

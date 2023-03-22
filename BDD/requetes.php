@@ -18,11 +18,15 @@ function getProduitById($id):array{
 }
 
 
-function AjoutVente($id, $quantite):void{
+function changeQteStock($id, $qte, $signe){
     $connexion = createConnexion();
-    $requete = $connexion->prepare("UPDATE produits SET nbVentes = nbVentes+ :quantite WHERE id = :id");
-    $requete->bindValue('id', $id);
-    $requete->bindValue('quantite', $quantite);
+    if ($signe == '-') {
+        $requete = $connexion->prepare("UPDATE produits SET QteStock =QteStock-:qte WHERE id = :id");
+    }else{
+        $requete = $connexion->prepare("UPDATE produits SET QteStock =QteStock+:qte WHERE id = :id");
+    }
+    $requete->bindParam('qte', $qte);
+    $requete->bindParam('id', $id);
     $requete->execute();
 }
 
@@ -37,10 +41,9 @@ function getAvisById($id):array{
 
 function addUser($nom, $prenom, $mail, $login, $password, $dateNaissance, $ville):bool{
     $connexion = createConnexion();
-    $sel = "CarottosSel";
     $requeteSQL = "INSERT INTO users(login, password, nomUser, prenomUser, dateNaissance, villeUser, mailUser) VALUES (:login, :password, :nom, :prenom, :dateNaissance, :ville, :mail)";
     $requete = $connexion-> prepare($requeteSQL);
-    $password = md5($password.$sel);
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $requete->bindValue("login", $login);
     $requete->bindValue("password", $password);
     $requete->bindValue("nom", $nom);
@@ -64,3 +67,25 @@ function verifLogin($login){
     }
     return True;
 }
+
+function verifConnection($login, $password){
+    $login = trim($login);
+    if(verifLogin($login)=="0"){
+        $connexion = createConnexion();
+        $requete = $connexion->prepare("SELECT password FROM users WHERE login = :login");
+        $requete->bindParam('login', $login);
+        $requete->execute();
+        $passwordBDD = $requete->fetch(PDO::FETCH_COLUMN);
+        return password_verify($password, $passwordBDD);
+    }
+    return false;
+}
+
+function getUserByLogin($login){
+    $connexion = createConnexion();
+    $requete = $connexion -> prepare("SELECT * FROM users where login = :login");
+    $requete -> bindParam('login', $login);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_ASSOC);
+}
+
