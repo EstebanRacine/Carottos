@@ -1254,7 +1254,92 @@ footer a:hover .remplissage{
 
 #listeCommandesPassees{
     width: 60%;
-    margin: auto;
+    margin: 30px auto auto;
+    /*border: black 2px solid;*/
+    padding: 10px;
+    border-collapse: collapse;
+}
+
+#listeCommandesPassees tr{
+    border-bottom: black 1px solid;
+    transition: transform 0.5s;
+}
+
+#listeCommandesPassees tr:last-child{
+    border: none;
+}
+
+#listeCommandesPassees tr:hover{
+    transform: scale(1.05);
+}
+
+#listeCommandesPassees td{
+    padding: 5px 5px 10px;
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+}
+
+#listeCommandesPassees i{
+    font-size: 1.5em;
+    color: #dc830e;
+}
+
+/*PAGE ANCIEN PANIER*/
+
+.ancienPanier{
+    margin: 140px auto auto auto;
+    width: 90%;
+    font-family: Bahnschrift, sans-serif;
+}
+
+.ancienPanier h1{
+    color: #dc830e;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.ancienPanier table{
+    border-collapse: collapse;
+    width: 70%;
+    margin: 70px auto auto;
+}
+
+.ancienPanier table thead th{
+    height: 50px;
+    color: #dc830e;
+    font-size: 1.3em;
+}
+
+.ancienPanier table thead th:first-letter{
+    color: #77b255;
+}
+
+.ancienPanier table tr{
+    border-bottom: #77b255 2px solid;
+}
+
+.ancienPanier table tbody tr:last-child{
+    border: none;
+}
+
+.ancienPanier table td{
+    width: 16%;
+    height: 175px;
+    text-align: center;
+    padding: 10px;
+}
+
+.ancienPanier table tr td:first-child{
+    width: 100px;
+}
+
+.ancienPanier table img{
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 

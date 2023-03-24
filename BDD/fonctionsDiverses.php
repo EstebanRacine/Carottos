@@ -1,8 +1,12 @@
 <?php
 
-function PrixFonctionPoids($prixKg, $quantite){
-    return $prixKg*$quantite;
+function ecritureDateLettreViaBDD($date):string{
+    $annee = substr($date, 0, 4);
+    $mois = substr($date, 5 ,2);
+    $jour = substr($date, -2);
+    return $jour." ".ecritureMois($mois)." ".$annee;
 }
+
 
 function dateLivraison($joursAvantLiv){
     $timestampAjoute = $joursAvantLiv*86400;

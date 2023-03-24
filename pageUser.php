@@ -69,10 +69,10 @@ $dateNaiss = date('d / m / Y', strtotime($_SESSION['user']['dateNaiss']));
             foreach ($commandes as $commande){
             ?>
 
-                <tr>
+                <tr onclick="document.location='ancienPanier.php?idPanier=<?= $commande['idCommande'] ?>'" >
                     <td><i class="fa-solid fa-basket-shopping"></i></td>
                     <td><?=  getNbProdByCommandeId($commande['idCommande'])[0]." produit(s)"?></td>
-                    <td><?= "Le ".date('d / m / Y', strtotime($commande['dateCommande']))?></td>
+                    <td><?= "Le ".date('d/m/Y', strtotime($commande['dateCommande']))?></td>
                     <td><?= getPrixTotalCommande($commande['idCommande'])." €"?></td>
                 </tr>
 

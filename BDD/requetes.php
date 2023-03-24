@@ -140,6 +140,14 @@ function getCommandeByUserId($id){
 
 //CONTENU COMMANDE
 
+function getCommandeByIdCommande($idCommande){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT * FROM commande WHERE idCommande = :idCom");
+    $requete->bindParam('idCom', $idCommande);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_ASSOC);
+}
+
 function getContenuByIdCommande($id){
     $connexion = createConnexion();
     $requete = $connexion->prepare("SElECT idProduit, qteProd FROM contenu WHERE idCommande = :idCom");
@@ -172,5 +180,3 @@ function getPrixTotalCommande($id){
     $array =  $requete->fetch(PDO::FETCH_ASSOC);
     return number_format($array['Total'], 2);
 }
-
-var_dump(getPrixTotalCommande(1));
