@@ -1184,6 +1184,11 @@ footer a:hover .remplissage{
     font-family: Bahnschrift, sans-serif;
 }
 
+.pageUser h1{
+    font-family: MoreSugarRegular, sans-serif;
+    color: white;
+}
+
 .infosUsers{
     width: 70%;
     display: grid;

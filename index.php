@@ -12,8 +12,6 @@ if (!isset($_SESSION['isCo'])){
     $_SESSION['isCo'] = false;
 }
 
-print_r($_SESSION['isCo']);
-
 ?>
 
 
