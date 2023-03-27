@@ -66,10 +66,13 @@ $dateNaiss = date('d / m / Y', strtotime($_SESSION['user']['dateNaiss']));
             <tbody>
 
             <?php
+            if (empty($commandes)){
+                echo "<tr id='ancienneCommandeEmpty'><td class='VertContact'>Vous n'avez encore jamais passé de commande.</td></tr>";
+            }
             foreach ($commandes as $commande){
             ?>
 
-                <tr onclick="document.location='ancienPanier.php?idPanier=<?= $commande['idCommande'] ?>'" >
+                <tr class="grilleAncienPanier" onclick="document.location='ancienPanier.php?idPanier=<?= $commande['idCommande'] ?>'" >
                     <td><i class="fa-solid fa-basket-shopping"></i></td>
                     <td><?=  getNbProdByCommandeId($commande['idCommande'])[0]." produit(s)"?></td>
                     <td><?= "Le ".date('d/m/Y', strtotime($commande['dateCommande']))?></td>

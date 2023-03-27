@@ -1265,16 +1265,26 @@ footer a:hover .remplissage{
     border-collapse: collapse;
 }
 
-#listeCommandesPassees tr{
+#ancienneCommandeEmpty{
+    font-size: 1.5em;
+    font-family: MoreSugarThin, sans-serif;
+    cursor: default;
+}
+
+#ancienneCommandeEmpty:hover{
+    transform: none;
+}
+
+#listeCommandesPassees .grilleAncienPanier{
     border-bottom: black 1px solid;
     transition: transform 0.5s;
 }
 
-#listeCommandesPassees tr:last-child{
+#listeCommandesPassees .grilleAncienPanier:last-child{
     border: none;
 }
 
-#listeCommandesPassees tr:hover{
+#listeCommandesPassees .grilleAncienPanier:hover{
     transform: scale(1.05);
 }
 
@@ -1282,13 +1292,19 @@ footer a:hover .remplissage{
     padding: 5px 5px 10px;
     width: 25%;
     text-align: center;
-    cursor: pointer;
 }
 
 #listeCommandesPassees i{
     font-size: 1.5em;
     color: #dc830e;
 }
+
+#listeCommandesPassees .grilleAncienPanier td{
+    cursor: pointer;
+}
+
+
+
 
 /*PAGE ANCIEN PANIER*/
 
