@@ -110,7 +110,7 @@ $pFinal = 0;
                     ?>
                     <input class="modifierPanier" type="submit" value="Modifier">
                 </form>
-                <p><?= number_format($pTotal/1.055, 2) ?></p>
+                <p><?= number_format($pTotal/1.055, 2)." €" ?></p>
                 <p><?= $pTotal." €" ?></p>
             </div>
 

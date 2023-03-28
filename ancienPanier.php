@@ -50,9 +50,9 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
             <th></th>
             <th>Libellé</th>
             <th>Prix au kilo</th>
-            <th>Quantité en kg</th>
-            <th>Prix Total HT</th>
-            <th>Prix Total TTC</th>
+            <th>Quantité en <span class="VertContact">kg</span></th>
+            <th>Prix Total <span class="VertContact">HT</span></th>
+            <th>Prix Total <span class="VertContact">TTC</span></th>
             </thead>
             <tbody>
             <?php
