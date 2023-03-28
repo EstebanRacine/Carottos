@@ -969,7 +969,7 @@ footer a:hover .remplissage{
 }
 
 .supp{
-    font-family: "MoreSugarRegular";
+    font-family: "MoreSugarRegular", sans-serif;
     font-size: 1.3em;
     background-color: bisque;
     outline: none;
@@ -1388,6 +1388,86 @@ footer a:hover .remplissage{
     border-radius: 10px;
 }
 
+/*VALIDATION PANIER*/
+
+.validationPanier{
+    margin: 150px auto 130px auto;
+    width: 70%;
+    font-family: Bahnschrift, sans-serif;
+    border-left: 4px solid #77b255;
+    border-right: 4px solid #77b255;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    border-radius: 10px;
+    position: relative;
+}
+
+.retourPanierFromValidation{
+    left: -2.25cm;
+    top: 0.5cm;
+}
+
+.validationPanier form{
+    width: 90%;
+}
+
+.validationPanier form > *{
+    border-bottom: 2px solid #77b255;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.validationPanier h2{
+    color: #dc830e;
+    margin-bottom: 10px;
+}
+
+.infosFinales{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    text-align: center;
+    color: #dc830e;
+    padding: 10px;
+}
+
+.nomPrenomMail{
+    display: grid;
+    width: 40%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, max-content);
+}
+
+#mailFinal{
+    grid-column: 1/-1;
+}
+
+.lieuLivraison{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.affichageInfosPtLiv{
+    display: none;
+}
+
+.affichageInfosPtLivYes{
+    /*display: grid;*/
+    /*grid-template-columns: repeat(2, 1fr);*/
+    /*grid-template-rows: repeat(3, max-content);*/
+    display: block;
+}
+
+#nomPtLiv{
+    grid-column: 1/-1;
+}
+
+#telPtLiv{
+    grid-column: 1/-1;
+}
 
 /*SCROLL-BAR-FIREFOX*/
 ::-webkit-scrollbar {
