@@ -44,6 +44,7 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
     ?>
 
     <div class="ancienPanier">
+        <a href="pageUser.php" id="back" class="retourPageUserFromAncienPanier"><i class="fa-solid fa-arrow-left"></i></a>
         <h1>Votre panier du <?= $datePanier ?></h1>
         <table>
             <thead>
