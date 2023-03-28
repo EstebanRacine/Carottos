@@ -1450,15 +1450,16 @@ footer a:hover .remplissage{
     grid-template-columns: repeat(2, 1fr);
 }
 
-.affichageInfosPtLiv{
+.affichageInfosLiv{
     display: none;
 }
 
-.affichageInfosPtLivYes{
+.affichageInfosLivYes{
     /*display: grid;*/
     /*grid-template-columns: repeat(2, 1fr);*/
     /*grid-template-rows: repeat(3, max-content);*/
     display: block;
+    color: black;
 }
 
 #nomPtLiv{
@@ -1468,6 +1469,14 @@ footer a:hover .remplissage{
 #telPtLiv{
     grid-column: 1/-1;
 }
+
+/*TEST*/
+.test{
+    margin: 140px auto;
+}
+
+
+
 
 /*SCROLL-BAR-FIREFOX*/
 ::-webkit-scrollbar {
