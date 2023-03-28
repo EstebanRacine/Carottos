@@ -1394,8 +1394,7 @@ footer a:hover .remplissage{
     margin: 150px auto 130px auto;
     width: 70%;
     font-family: Bahnschrift, sans-serif;
-    border-left: 4px solid #77b255;
-    border-right: 4px solid #77b255;
+    border: 3px solid #77b255;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1412,6 +1411,11 @@ footer a:hover .remplissage{
 
 .validationPanier form{
     width: 90%;
+}
+
+.validationPanier h1{
+    text-align: center;
+    color: #dc830e;
 }
 
 .validationPanier form > *{
@@ -1445,9 +1449,20 @@ footer a:hover .remplissage{
     grid-column: 1/-1;
 }
 
+.mapsLivValidation iframe{
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 5px;
+}
+
+
 .lieuLivraison{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.selectLiv{
+    border: 5px solid blue;
 }
 
 .affichageInfosLiv{
@@ -1455,20 +1470,29 @@ footer a:hover .remplissage{
 }
 
 .affichageInfosLivYes{
-    /*display: grid;*/
-    /*grid-template-columns: repeat(2, 1fr);*/
-    /*grid-template-rows: repeat(3, max-content);*/
-    display: block;
-    color: black;
+    margin-top: 20%;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: repeat(3, 50px);
+    text-align: center;
+    width: 50%;
 }
 
-#nomPtLiv{
+.affichageInfosLivYes p{
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.nomPtLiv, .telPtLiv{
     grid-column: 1/-1;
 }
 
-#telPtLiv{
-    grid-column: 1/-1;
+.telPtLiv i{
+    margin-right: 8px;
 }
+
 
 /*TEST*/
 .test{

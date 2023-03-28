@@ -25,8 +25,8 @@ print_r($liste[0]);
 
     <div class="test">
         <script src="fichierCommuns/affichageDivLieuChoisi.js"></script>
-        <form action="" id="testForm">
-            <select name="selectliv">
+        <form action="" method="post" id="testForm">
+            <select name="selectLiv" class="selectLiv">
                 <?php
                 foreach ($liste as $emplacement){
                 ?>

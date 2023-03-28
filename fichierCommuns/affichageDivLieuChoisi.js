@@ -19,6 +19,6 @@ function showDiv(oEvent){
 
 //Quand le DOm est dispo
 document.addEventListener('DOMContentLoaded',function(){
-    var oForm = document.forms['testForm'];
+    var oForm = document.forms['formulaireValidation'];
     oForm['selectLiv'].addEventListener('change',showDiv);
 });

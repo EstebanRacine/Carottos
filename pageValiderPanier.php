@@ -41,6 +41,7 @@ $listePtLivraison = getAllPointsRelais();
     <div class="validationPanier">
         <a href="panier.php" id="back" class="retourPanierFromValidation"><i class="fa-solid fa-arrow-left"></i></a>
         <form action="" method="post" id="formulaireValidation">
+            <h1><span class="VertContact">R</span>écapitulatif de votre commande</h1>
             <div class="informationsAcheteur">
                 <h2><span class="VertContact">V</span>os informations</h2>
                 <div class="infosFinales">
@@ -61,32 +62,32 @@ $listePtLivraison = getAllPointsRelais();
                 <div class="infosLieuLiv">
                     <script src="fichierCommuns/affichageDivLieuChoisi.js"></script>
                     <h2> <span class="VertContact">L</span>ieu de livraison</h2>
-                    <form action="" method="post" id="testForm">
                         <select name="selectLiv">
-                            <optgroup label="Choix emplacement inscription">
-                                <?php
-                                foreach ($listePtLivraison as $emplacement){
-                                    ?>
-
-                                    <option value="<?= $emplacement['idPtLiv']?>"><?= $emplacement['nomPtLiv'] ?></option>
-
-                                    <?php
-                                }
+                            <?php
+                            foreach ($listePtLivraison as $emplacement){
                                 ?>
-                            </optgroup>
+
+                                <option value="<?= $emplacement['idPtLiv'] ?>"><?= $emplacement['nomPtLiv'] ?></option>
+
+                                <?php
+                            }
+                            ?>
                         </select>
+
                         <?php
                         foreach ($listePtLivraison as $emplacement){
                             ?>
-                            <div class="affichageInfosLiv" id="<?= "Emplacement".$emplacement['id']?>">
-                                <h3><?= $emplacement['nomPtLiv']?></h3>
-                                <p>Tel : <?= $emplacement['telPtLiv'] ?></p>
+
+                            <div class="affichageInfosLiv" id=<?= "Emplacement".$emplacement['idPtLiv'] ?>>
+                                <p class="nomPtLiv"><?= $emplacement['nomPtLiv'] ?></p>
+                                <p><?= $emplacement['adressePtLiv'] ?>, </p>
+                                <p><?= $emplacement['villePtLiv'] ?></p>
+                                <p class="telPtLiv"> <i class="fa-solid fa-phone"></i> <?= $emplacement['telPtLiv'] ?></p>
                             </div>
 
                             <?php
                         }
                         ?>
-                    </form>
                 </div>
                 <div class="mapsLivValidation">
                     <iframe src="https://www.google.com/maps/d/u/0/embed?mid=13a-tH3peAIRYu6gOZKbqNBAmSgcC4m4&ehbc=2E312F" width="100%" height="400px"></iframe>
@@ -97,7 +98,7 @@ $listePtLivraison = getAllPointsRelais();
                 <h2><span class="VertContact">M</span>oyen de paiement</h2>
             </div>
 
-            <button type="submit" id="validationPanier">Valider votre panier</button>
+            <button type="submit" id="validationPanier" value="1">Valider votre panier</button>
         </form>
     </div>
 
