@@ -12,7 +12,6 @@ if (!isset($_SESSION['isCo'])){
     }
 }
 
-
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     if (verifConnection($_POST['login'], $_POST['password'])){
         $_SESSION['isCo'] = true;
@@ -24,7 +23,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $_SESSION['user']['ville'] = $user['villeUser'];
         $_SESSION['user']['mail'] = $user['mailUser'];
         $_SESSION['user']['id'] = $user['idUser'];
-        header('Location: pageUser.php');
+        $location = "Location: pageUser.php";
+        if (isset($_GET['validerPanier'])){
+            $location .= "?validerPanier=1";
+        }
+        header($location);
     }
 }
 

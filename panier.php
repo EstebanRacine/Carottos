@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     if (isset($_POST['supp'])) {
         changeQteStock($_POST['id'], $_POST['quantite'], '+');
         unset($_SESSION['panier'][$id]);
-
     }else{
         if (is_numeric($_POST['quantite'])) {
             $_SESSION['panier'][$id]['quantite'] = $_POST['quantite'];
@@ -129,9 +128,6 @@ $pFinal = 0;
                 <p></p>
                 <p><?= $pFinal." €"?></p>
             </div>
-    <?php
-    if ($_SESSION["isCo"]){
-    ?>
         <div class="prodPanier validerPanier">
             <p></p>
             <p></p>
@@ -139,15 +135,17 @@ $pFinal = 0;
             <p></p>
             <p></p>
             <p></p>
-            <form action="fichierCommuns/validerPanier.php" method="post">
-                <input hidden type="text" value="<?= $_SESSION['user']['id'] ?>">
+            <form action="validerPanier.php" method="post">
+                <?php
+                if ($_SESSION['isCo']){
+                ?>
+                    <input hidden type="text" value="<?= $_SESSION['user']['id'] ?>">
+                <?php
+                }
+                ?>
                 <button id="buttonValiderPanier" type="submit" name="validerPanier" value="1">Valider le panier</button>
             </form>
         </div>
-    <?php
-    }
-    ?>
-
 </div>
 
         <?php

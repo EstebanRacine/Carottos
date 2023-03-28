@@ -12,6 +12,10 @@ if (!$_SESSION['isCo']){
     header('Location: connexion.php');
 }
 
+if (isset($_GET['validerPanier'])){
+    header('Location: validerPanier.php?valide=1');
+}
+
 if ($_SERVER['REQUEST_METHOD']=="POST"){
     if (isset($_POST['deco'])) {
         $_SESSION['user'] = [];
