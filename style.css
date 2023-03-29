@@ -1404,6 +1404,10 @@ footer a:hover .remplissage{
     position: relative;
 }
 
+.validationPanier input, .validationPanier select, .validationPanier button{
+    cursor: pointer;
+}
+
 .retourPanierFromValidation{
     left: -2.25cm;
     top: 0.5cm;
@@ -1416,6 +1420,7 @@ footer a:hover .remplissage{
 .validationPanier h1{
     text-align: center;
     color: #dc830e;
+    padding: 5px;
 }
 
 .validationPanier form > *{
@@ -1462,7 +1467,17 @@ footer a:hover .remplissage{
 }
 
 .selectLiv{
-    border: 5px solid blue;
+    background-color: #f1ab56;
+    border-radius: 10px;
+    color: white;
+    font-family: Bahnschrift, sans-serif;
+    border: none;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    padding: 3px;
+    font-size: 1em;
+    margin: 1cm auto auto;
 }
 
 .affichageInfosLiv{
@@ -1470,7 +1485,7 @@ footer a:hover .remplissage{
 }
 
 .affichageInfosLivYes{
-    margin-top: 20%;
+    margin-top: 12%;
     display: grid;
     grid-template-columns: max-content max-content;
     grid-template-rows: repeat(3, 50px);
@@ -1493,6 +1508,71 @@ footer a:hover .remplissage{
     margin-right: 8px;
 }
 
+.methodePaiement{
+    display: grid;
+    grid-template-rows: max-content max-content;
+    grid-template-columns: 1fr 2fr;
+}
+
+.moyenPaiementChoix{
+    width: 100%;
+    border-right: 2px solid #77b255;
+    padding-top: 10px;
+    margin-bottom: 30px;
+}
+
+.moyenPaiementChoix p{
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.moyenPaiementChoix i{
+    padding-left: 10px;
+    font-size: 1.4em;
+}
+
+.moyenPaiementChoix p input{
+    margin-right: 10px;
+}
+
+input[type=radio] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+}
+
+.moyenPaiementChoix input[type=radio]{
+    border-radius: 50%;
+    height: 13px;
+    width: 13px;
+    content: "";
+    background: bisque;
+    border: 2px solid #77b255;
+    transition: all 0.5s;
+}
+
+.moyenPaiementChoix input[type=radio]:checked{
+    background: #77b255;
+    transform: scale(1.2);
+}
+
+
+#applePay i, #paypal i{
+    font-size: 1.7em;
+}
+
+.affichageInfosPaiement{
+    display: none;
+}
+
+#paypalRadio:checked + .paypalDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
 
 /*TEST*/
 .test{
