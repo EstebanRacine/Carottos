@@ -1566,7 +1566,7 @@ input[type=radio] {
     display: none;
 }
 
-#paypalRadio:checked + .paypalDiv{
+.paypalDiv{
     display: flex;
     justify-content: center;
     align-items: center;
