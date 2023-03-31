@@ -23,17 +23,28 @@
 //     oForm['paiement'].addEventListener('change',showDivPaie);
 // });
 
+function choixPaiement() {
+    if (document.getElementById('paypalRadio').checked) {
+        document.getElementById('PaiementPaypal').className='paypaldiv';
+    } else {
+        document.getElementById('PaiementPaypal').className='affichageInfosPaiement'
+    }
 
-if (document.getElementById('paypalRadio').checked){
-    document.getElementById('Paiementpaypal').className('paypaldiv');
-}else{
-    document.getElementById('Paiementpaypal').className('affichageInfosPaiement')
+    if (document.getElementById('creditCardRadio').checked) {
+        document.getElementById('PaiementCredit').className='creditDiv';
+    } else {
+        document.getElementById('PaiementCredit').className='affichageInfosPaiement'
+    }
+
+    if (document.getElementById('carteCadeauRadio').checked) {
+        document.getElementById('PaiementCadeau').className='cadeauDiv';
+    } else {
+        document.getElementById('PaiementCadeau').className='affichageInfosPaiement'
+    }
+
+    if (document.getElementById('applePayRadio').checked) {
+        document.getElementById('PaiementApplePay').className='applePayDiv';
+    } else {
+        document.getElementById('PaiementApplePay').className='affichageInfosPaiement'
+    }
 }
-
-if (document.getElementById('creditCardRadio').checked){
-    document.getElementById('Paiementcredit').className('creditDiv');
-}else{
-    document.getElementById('Paiementcredit').className('affichageInfosPaiement')
-}
-
-
