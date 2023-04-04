@@ -125,9 +125,20 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
 
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementCadeau">
-                    <script src="fichierCommuns/cadeauValide.js"></script>
+
+
+                    <script>
+                        function carteValide(){
+                            var codeCarte = document.getElementById("noCadeau"),
+                                listeCode = new Array(<?= $chaine ?>);
+                            console.log(listeCode);
+
+                        }
+                    </script>
+
+
                     <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
-                    <input onchange="carteValide(<?php echo json_encode($chaine) ?>)" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
+                    <input onchange="carteValide()" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
                     <p id="valide"></p>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
