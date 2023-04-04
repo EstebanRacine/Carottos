@@ -180,3 +180,21 @@ function getPrixTotalCommande($id){
     $array =  $requete->fetch(PDO::FETCH_ASSOC);
     return number_format($array['Total'], 2);
 }
+
+
+//CARTE CADEAU
+
+function getAllCodeCarteCadeau(){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare('SELECT codeCarteCad FROM cartecadeau');
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_COLUMN);
+}
+
+function getPrixByCodeCarteCadeau($code){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare('SELECT valeurcarteCad FROM cartecadeau WHERE codeCarteCad = :code');
+    $requete->bindParam('code', $code);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_COLUMN);
+}

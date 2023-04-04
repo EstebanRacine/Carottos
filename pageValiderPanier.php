@@ -3,6 +3,7 @@ include_once "BDD/requetes.php";
 
 session_start();
 
+
 if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
@@ -15,7 +16,13 @@ if (!isset($_SESSION['isCo'])){
 }
 
 $listePtLivraison = getAllPointsRelais();
+$codeCarteCadeau = getAllCodeCarteCadeau();
 
+$chaine = '';
+foreach ($codeCarteCadeau as $code){
+    $chaine .= '"'.$code.'",';
+}
+$chaine = substr($chaine, 0, strlen($chaine)-1);
 ?>
 
 
@@ -118,9 +125,10 @@ $listePtLivraison = getAllPointsRelais();
 
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementCadeau">
+                    <script src="fichierCommuns/cadeauValide.js"></script>
                     <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
-                    <input type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
-                    <p></p>
+                    <input onchange="carteValide(<?php echo json_encode($chaine) ?>)" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
+                    <p id="valide"></p>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
                     <button>Payer via <i class="fab fa-apple-pay"></i></button>
