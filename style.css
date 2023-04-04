@@ -1614,7 +1614,6 @@ input[type=radio] {
 
 .cadeauDiv input{
     cursor: text;
-    display: block;
     height: 25px;
     width: 300px;
     transition: outline 0.5s;
@@ -1622,6 +1621,23 @@ input[type=radio] {
 
 .cadeauDiv input:focus{
     outline: 2px solid orange;
+}
+
+.invisible{
+    display: none;
+}
+
+.valide, .invalide{
+    display: block;
+    margin-left: 5px;
+}
+
+.valide{
+    color: green;
+}
+
+.invalide{
+    color: red;
 }
 
 

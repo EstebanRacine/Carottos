@@ -129,9 +129,17 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
 
                     <script>
                         function carteValide(){
-                            var codeCarte = document.getElementById("noCadeau"),
-                                listeCode = new Array(<?= $chaine ?>);
-                            console.log(listeCode);
+                            var codeCarte = document.getElementById("noCadeau").value,
+                                listeCode = new Array(<?= $chaine ?>),
+                                para = document.getElementById('cadeauValide');
+                            console.log(codeCarte);
+                            if (listeCode.includes(codeCarte)){
+                                para.className = 'valide';
+                                para.innerHTML = '<i class="fa-solid fa-check"></i>';
+                            }else{
+                                para.className='invalide';
+                                para.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                            }
 
                         }
                     </script>
@@ -139,7 +147,7 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
 
                     <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
                     <input onchange="carteValide()" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
-                    <p id="valide"></p>
+                    <p id="cadeauValide" class="invisible"></p>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
                     <button>Payer via <i class="fab fa-apple-pay"></i></button>
