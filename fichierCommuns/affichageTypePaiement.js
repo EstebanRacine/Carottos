@@ -25,7 +25,7 @@
 
 function choixPaiement() {
     if (document.getElementById('paypalRadio').checked) {
-        document.getElementById('PaiementPaypal').className='paypaldiv';
+        document.getElementById('PaiementPaypal').className='paypalDiv';
     } else {
         document.getElementById('PaiementPaypal').className='affichageInfosPaiement'
     }

@@ -28,6 +28,10 @@ html{
     color: red;
 }
 
+button *{
+    cursor: pointer;
+}
+
 /*COMMUN AUX DIFFERENTES PAGES*/
 
 /*Barre nav*/
@@ -1478,6 +1482,7 @@ footer a:hover .remplissage{
     padding: 3px;
     font-size: 1em;
     margin: 1cm auto auto;
+    height: 0.8cm;
 }
 
 .affichageInfosLiv{
@@ -1519,6 +1524,8 @@ footer a:hover .remplissage{
     border-right: 2px solid #77b255;
     padding-top: 10px;
     margin-bottom: 30px;
+    grid-row: 2/-1;
+    grid-column: 1/2;
 }
 
 .moyenPaiementChoix p{
@@ -1566,13 +1573,57 @@ input[type=radio] {
     display: none;
 }
 
-.paypalDiv{
+.paypalDiv, .applePayDiv, .cadeauDiv, .creditDiv{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
+    grid-row: 1/-1;
 }
+
+.paypalDiv button, .applePayDiv button{
+    display: flex;
+    margin: auto;
+    align-items: center;
+    height: 1.3cm;
+    font-family: Bahnschrift, sans-serif;
+    color: white;
+    background-color: #f4900c;
+    transition: transform 0.5s;
+    padding: 15px;
+    border: none;
+    font-size: 1.01em;
+    border-radius: 10px;
+}
+
+.paypalDiv button svg, .applePayDiv button i{
+    margin-left: 5px;
+    font-size: 2.5em;
+}
+
+.paypalDiv button:hover, .applePayDiv button:hover{
+    border: 2px solid #77b255;
+    transform: scale(1.1);
+}
+
+
+.cadeauDiv label{
+    margin-right: 5px;
+}
+
+.cadeauDiv input{
+    cursor: text;
+    display: block;
+    height: 25px;
+    width: 300px;
+    transition: outline 0.5s;
+}
+
+.cadeauDiv input:focus{
+    outline: 2px solid orange;
+}
+
 
 /*TEST*/
 .test{
