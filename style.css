@@ -1438,6 +1438,8 @@ footer a:hover .remplissage{
     margin-bottom: 10px;
 }
 
+/*INFOS USER VALIDATION PANIER*/
+
 .infosFinales{
     display: flex;
     justify-content: space-around;
@@ -1464,6 +1466,76 @@ footer a:hover .remplissage{
     margin-bottom: 5px;
 }
 
+/*PRIX VALIDATION PANIER*/
+
+.prixTotalFinCommande{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #f4900c;
+    text-align: center;
+}
+
+#nomPrixTotal, .prixTotalFinCommande label{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.prixTotalFinCommande p{
+    margin-bottom: 8px;
+}
+
+.remise{
+    margin-right: 12px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #77b255;
+}
+
+.prixPostRemise{
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-right: 4px;
+}
+
+.messagePromo{
+    margin-top: 8px;
+}
+
+.annulerRemise{
+    margin-bottom: 15px;
+}
+
+.prixTotalFinCommande input{
+    cursor: text;
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 3px;
+    border: 1px solid #f4900c;
+    transition: all 0.5s;
+    height: 0.6cm;
+    padding: 3px;
+}
+
+.prixTotalFinCommande input:focus{
+    outline: 1px solid #dc830e;
+}
+
+.buttonPromo{
+    color: white;
+    background-color: #f4900c;
+    border: #dc830e 2px solid;
+    border-radius: 10px;
+    padding: 5px;
+    font-family: Bahnschrift, sans-serif;
+    transition: all 0.5s;
+}
+
+.buttonPromo:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #77b255;
+}
+
+/*LIVRAISON VALIDATION PANIER*/
 
 .lieuLivraison{
     display: grid;
@@ -1512,6 +1584,8 @@ footer a:hover .remplissage{
 .telPtLiv i{
     margin-right: 8px;
 }
+
+/*PAIEMENT VALIDATION PANIER*/
 
 .methodePaiement{
     display: grid;
@@ -1680,16 +1754,72 @@ input[type=radio] {
     animation: 0.25s Nope linear;
 }
 
-.soldeInvisible{
+.boutonCadeauInvisible{
     display: none;
 }
 
-.soldeVisible{
+.boutonCadeauVisible{
     display: block;
     position: absolute;
+    padding: 8px;
     margin-top: 100px;
+    background-color: #f4900c;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid #dc830e;
+    font-family: Bahnschrift, sans-serif;
+    transition: transform 0.5s;
 }
 
+.boutonCadeauVisible:hover{
+    transform: scale(1.15);
+}
+
+
+.creditDiv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: max-content max-content max-content;
+    width: 90%;
+    margin: auto;
+    align-self: center;
+    height: max-content;
+    grid-gap: 8px;
+}
+
+.creditDiv h3{
+    grid-column: 1/-1;
+    color: #f4900c;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 20px;
+}
+
+.creditDiv input{
+    cursor: text;
+    padding: 5px;
+}
+
+
+
+/*BOUTON VALIDATION PANIER FINAL*/
+
+#validationPanier{
+    font-family: Bahnschrift, sans-serif;
+    background-color: #f4900c;
+    border: 2px solid #dc830e;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 7px auto 15px;
+    color: white;
+    font-size: 1.02em;
+    transition: all 0.5s;
+}
+
+#validationPanier:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #77b255;
+}
 
 /*TEST*/
 .test{

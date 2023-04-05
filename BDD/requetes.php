@@ -198,3 +198,20 @@ function getPrixByCodeCarteCadeau($code){
     $requete->execute();
     return $requete->fetch(PDO::FETCH_COLUMN);
 }
+
+//CODE PROMO
+
+function getAllCodePromo(){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare('SELECT codePromo FROM codepromo');
+    $requete->execute();
+    return $requete->fetchAll(PDO::FETCH_COLUMN);
+}
+
+function getRemiseByCode($code){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare('SELECT remisePromo FROM codepromo WHERE codePromo = :code');
+    $requete->bindParam('code', $code);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_COLUMN);
+}

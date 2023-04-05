@@ -18,6 +18,10 @@ if (!isset($_SESSION['isCo'])){
 if (!$_SESSION['isCo']){
     header('Location: connexion.php?validerPanier=1');
 }else{
+    $_SESSION['prixTotal'] = $_POST['prixTotal'];
+    if (isset($_SESSION['remise'])){
+        unset($_SESSION['remise']);
+    }
     header('Location: pageValiderPanier.php');
 }
 

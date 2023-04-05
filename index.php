@@ -8,6 +8,10 @@ if(!isset($_SESSION['user'])) {
     $_SESSION['user'] = [];
 }
 
+if ($_SESSION['panier']==[]){
+    $_SESSION['prixTotal'] = null;
+}
+
 if (!isset($_SESSION['isCo'])){
     $_SESSION['isCo'] = false;
 }
@@ -21,6 +25,7 @@ if (!isset($_SESSION['isCo'])){
     <meta charset="UTF-8">
     <title>Accueil</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/CAndLapin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>

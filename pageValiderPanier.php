@@ -8,6 +8,10 @@ if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
 
+if ($_SESSION['panier']==[]){
+    header('Location: index.php');
+}
+
 if(!isset($_SESSION['user'])) {
     $_SESSION['user'] = [];
 }
@@ -17,13 +21,110 @@ if (!isset($_SESSION['isCo'])){
 
 $listePtLivraison = getAllPointsRelais();
 $codeCarteCadeau = getAllCodeCarteCadeau();
-
+$codeCarte = "";
+$codePromo = "";
+$remise = null;
+$erreurs = [];
+$messagePromo = "";
+$titulaireCredit = null;
+$numCredit = null;
+$cryptoCredit = null;
+$dateCredit = null;
 
 $chaine = '';
 foreach ($codeCarteCadeau as $code){
     $chaine .= '"'.$code.'",';
 }
 $chaine = substr($chaine, 0, strlen($chaine)-1);
+
+
+$tabAssocCarte = '';
+
+
+$paiementCoche = "";
+if ($_SERVER['REQUEST_METHOD']=="POST"){
+
+    if (isset($_POST['paiement'])){
+        $paiementCoche = $_POST['paiement'];
+        if ($paiementCoche == "carteCadeau"){
+            if (isset($_POST['noCadeau'])){
+                $codeCarte = $_POST['noCadeau'];
+            }
+        }
+    }
+
+    if (isset($_POST['annulerRemise'])){
+        $_SESSION['prixTotal'] += $_SESSION['remise'];
+        $_SESSION['prixTotal'] = number_format($_SESSION['prixTotal'], 2);
+        unset($_SESSION['remise']);
+    }
+
+    if (isset($_POST['codePromoButton'])) {
+        if (isset($_SESSION['remise'])){
+            $erreurs['codePromo'] = "<p class='Rouge'>Vous avez déjà utilisé un code promo</p>"."<button type='submit' name='annulerRemise' class='buttonPromo annulerRemise'>Annuler la remise</button>" ;
+        }
+        if (!empty(trim($_POST['codePromo']))) {
+            $codePromo = strtoupper($_POST['codePromo']);
+        }
+        $verifCode = false;
+        foreach (getAllCodePromo() as $codeP) {
+            if ($codeP == $codePromo) {
+                $verifCode = true;
+                $remise = getRemiseByCode($codePromo);
+                $messagePromo = "<p class='VertContact messagePromo'>La remise avec ce code est de " . $remise . " %</p>";
+            }
+        }
+
+        if (!$verifCode) {
+            $erreurs['codePromo'] = "<p class='Rouge'>Le code n'est pas valide</p>";
+        }
+    }
+
+
+    if (isset($_POST['boutonCadeau'])){
+        if (isset($_POST['newPrixTotal'])) {
+            $_SESSION['remise'] = $_POST['remise'];
+            $_SESSION['prixTotal'] = $_POST['newPrixTotal'];
+        }
+        header('Location: index.php');
+    }
+
+    if (isset($_POST['validerPanier'])){
+        if (!empty(trim($_POST['tituCredit']))){
+            $titulaireCredit = $_POST['tituCredit'];
+        }else{
+            $erreurs['tituCredit'] = "<p class='Rouge'>Veuillez remplir le champ Titulaire</p>";
+        }
+
+        if (!empty(trim($_POST['numCredit']))){
+            $numCredit = $_POST['numCredit'];
+        }else{
+            $erreurs['numCredit'] = "<p class='Rouge'>Veuillez remplir le champ Numéro de carte</p>";
+        }
+
+        if (!empty(trim($_POST['cryptoCredit']))){
+            $cryptoCredit = $_POST['cryptoCredit'];
+        }else{
+            $erreurs['cryptoCredit'] = "<p class='Rouge'>Veuillez remplir le champ Cryptogramme</p>";
+        }
+
+        if (!empty(trim($_POST['dateCredit']))){
+            $dateCredit = $_POST['dateCredit'];
+        }else{
+            $erreurs['dateCredit'] = "<p class='Rouge'>Veuillez remplir le champ Date d'expiration</p>";
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 ?>
 
@@ -36,6 +137,7 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/CAndLapin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Validation du panier</title>
 </head>
@@ -64,6 +166,40 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
                         <p><?= $_SESSION['user']['ville'] ?></p>
                     </div>
                 </div>
+
+            </div>
+
+            <div class="recapTotalPanier">
+                <h2><span class="VertContact">C</span>oût de votre commande</h2>
+                <div class="prixTotalFinCommande">
+                    <div class="prix">
+                        <p id="nomPrixTotal"><span class="VertContact">P</span>rix Total </p>
+                        <p> <?= $_SESSION['prixTotal'] ?> € </p>
+                        <?php
+                        if ($messagePromo != "" && !isset($_SESSION['remise'])){
+                            $remise = $_SESSION['prixTotal']*($remise/100);
+                            echo "<p class='Rouge remise'> - ".$remise." €</p>";
+                            $newPrix = $_SESSION['prixTotal']-$remise;
+                            echo "<p class='prixPostRemise'> ". $newPrix ." € </p>";
+                            echo  "<input type='text' name='remise' hidden value=$remise>";
+                            echo  "<input type='text' name='newPrixTotal' hidden value=$newPrix>";
+                        }
+                        ?>
+                    </div>
+                    <div class="codePromo">
+                        <label for="codePromo"><span class="VertContact">C</span>ode <span class="VertContact">P</span>romo</label>
+                        <input type="text" name="codePromo" id="codePromo" value=<?= $codePromo ?>>
+                        <button type="submit" name="codePromoButton" class="buttonPromo">Utiliser</button>
+                        <?php
+                        if (isset($erreurs['codePromo'])){
+                            echo $erreurs['codePromo'];
+                        }else{
+                            echo $messagePromo;
+                        }
+                        ?>
+                    </div>
+                </div>
+
 
             </div>
 
@@ -108,13 +244,13 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
                 <script src="fichierCommuns/affichageTypePaiement.js"></script>
                 <h2><span class="VertContact">M</span>oyen de paiement</h2>
                 <div class="moyenPaiementChoix">
-                    <p id="paypal"><input onclick="choixPaiement()" id="paypalRadio" type="radio" name="paiement" value="paypal">
+                    <p id="paypal"><input onclick="choixPaiement()" id="paypalRadio" type="radio" name="paiement" value="paypal" <?php $valAct = "paypal"; if ($valAct == $paiementCoche){echo "checked=cheked";} ?> >
                         <label for="paypalRadio">Paypal <i class="fa-brands fa-cc-paypal"></i></label> </p>
-                    <p id="creditCard"><input onclick="choixPaiement()" id="creditCardRadio" type="radio" name="paiement" value="credit">
+                    <p id="creditCard"><input onclick="choixPaiement()" id="creditCardRadio" type="radio" name="paiement" value="creditCard" <?php $valAct = "creditCard"; if ($valAct == $paiementCoche){echo "checked=cheked";} ?>>
                         <label for="creditCardRadio">Carte de crédit <i class="fa-solid fa-credit-card"></i></label></p>
-                    <p id="carteCadeau"><input onclick="choixPaiement()" id="carteCadeauRadio" type="radio" name="paiement" value="gift">
+                    <p id="carteCadeau"><input onclick="choixPaiement()" id="carteCadeauRadio" type="radio" name="paiement" value="carteCadeau" <?php $valAct = "carteCadeau"; if ($valAct == $paiementCoche){echo "checked=cheked";} ?>>
                         <label for="carteCadeauRadio">Carte cadeau <i class="fa-solid fa-gift"></i></label> </p>
-                    <p id="applePay"><input onclick="choixPaiement()" id="applePayRadio" type="radio" name="paiement" value="apple">
+                    <p id="applePay"><input onclick="choixPaiement()" id="applePayRadio" type="radio" name="paiement" value="applePay" <?php $valAct = "applePay"; if ($valAct == $paiementCoche){echo "checked=cheked";} ?>>
                         <label for="applePayRadio">Apple Pay <i class="fa-brands fa-cc-apple-pay"></i></label></p>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementPaypal">
@@ -128,30 +264,65 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
                         </svg></button>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementCredit">
+                    <h3><span class="VertContact">I</span>nformations <span class="VertContact">B</span>ancaires</h3>
+                    <div class="infoCred">
+                        <input type="text" name="numCredit" placeholder="Numéro de carte" value="<?= $numCredit ?>">
+                        <?php
+                        if (isset($erreurs['numCredit'])){
+                            echo $erreurs['numCredit'];
+                        }
+                        ?>
+                    </div>
+                    <div class="infoCred">
+                        <input type="month" name="dateCredit" placeholder="Date d'expiration" value="<?= $dateCredit ?>">
+                        <?php
+                        if (isset($erreurs['dateCredit'])){
+                            echo $erreurs['dateCredit'];
+                        }
+                        ?>
+                    </div>
+                    <div class="infoCred">
+                        <input type="text" name="tituCredit" placeholder="Nom de la carte" value="<?= $titulaireCredit ?>">
+                        <?php
+                        if (isset($erreurs['tituCredit'])){
+                            echo $erreurs['tituCredit'];
+                        }
+                        ?>
+                    </div>
+                    <div class="infoCred">
+                        <input type="text" name="cryptoCredit" placeholder="Cryptogramme" value="<?= $cryptoCredit ?>">
+                        <?php
+                        if (isset($erreurs['cryptoCredit'])){
+                            echo $erreurs['cryptoCredit'];
+                        }
+                        ?>
+                    </div>
+
+
 
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementCadeau">
 
 
                     <script>
+                        choixPaiement();
                         function carteValide() {
                             var codeCarte = document.getElementById("noCadeau").value,
                                 listeCode = new Array(<?= $chaine ?>),
                                 para = document.getElementById('cadeauValide'),
-                                paraSolde = document.getElementById('solde');
+                                buttonCadeau = document.getElementById('boutonCadeau');
                             if (codeCarte === "") {
                                 para.className = "invisible";
-                                paraSolde.className = 'soldeInvisible';
+                                buttonCadeau.className = 'boutonCadeauInvisible';
                             } else {
                                 if (listeCode.includes(codeCarte)) {
                                     para.className = 'valide';
                                     para.innerHTML = '<i class="fa-solid fa-check"></i>';
-                                    paraSolde.className = 'soldeVisible';
-                                    paraSolde.innerHTML = 'Votre solde est de ';
+                                    buttonCadeau.className = 'boutonCadeauVisible';
                                 } else {
                                     para.className = 'invalide';
                                     para.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                                    paraSolde.className = 'soldeInvisible';
+                                    buttonCadeau.className = 'boutonCadeauInvisible';
                                 }
                             }
                         }
@@ -160,10 +331,9 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
                     <form action="" method="post">
 
                         <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
-                        <input onchange="carteValide()" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
+                        <input onchange="carteValide()" value="<?= $codeCarte ?>" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
                         <p id="cadeauValide" class="invisible"></p>
-                        <p id="solde" class="soldeInvisible"></p>
-
+                        <button type="submit" name="boutonCadeau" class="boutonCadeauInvisible" id="boutonCadeau" value="1">Voir le solde</button>
 
 
                     </form>
@@ -174,10 +344,10 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
             </div>
 
 
-            <button type="submit" id="validationPanier" value="1">Valider votre panier</button>
+            <button type="submit" id="validationPanier" name="validerPanier" value="1">Valider votre panier</button>
         </form>
     </div>
-
+    <script>carteValide()</script>
     <?php
     include "fichierCommuns/footer.php";
     ?>

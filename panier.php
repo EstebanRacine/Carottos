@@ -48,6 +48,7 @@ $pFinal = 0;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mon panier</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/CAndLapin.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -143,6 +144,7 @@ $pFinal = 0;
                 <?php
                 }
                 ?>
+                <input type="text" hidden value="<?= $pFinal ?>" name="prixTotal">
                 <button id="buttonValiderPanier" type="submit" name="validerPanier" value="1">Valider le panier</button>
             </form>
         </div>
