@@ -18,11 +18,13 @@ if (!isset($_SESSION['isCo'])){
 $listePtLivraison = getAllPointsRelais();
 $codeCarteCadeau = getAllCodeCarteCadeau();
 
+
 $chaine = '';
 foreach ($codeCarteCadeau as $code){
     $chaine .= '"'.$code.'",';
 }
 $chaine = substr($chaine, 0, strlen($chaine)-1);
+
 ?>
 
 
@@ -106,10 +108,14 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
                 <script src="fichierCommuns/affichageTypePaiement.js"></script>
                 <h2><span class="VertContact">M</span>oyen de paiement</h2>
                 <div class="moyenPaiementChoix">
-                    <p id="paypal"><input onclick="choixPaiement()" id="paypalRadio" type="radio" name="paiement" value="paypal"> Paypal <i class="fa-brands fa-cc-paypal"></i> </p>
-                    <p id="creditCard"><input onclick="choixPaiement()" id="creditCardRadio" type="radio" name="paiement" value="credit"> Carte de crédit <i class="fa-solid fa-credit-card"></i></p>
-                    <p id="carteCadeau"><input onclick="choixPaiement()" id="carteCadeauRadio" type="radio" name="paiement" value="gift"> Carte cadeau <i class="fa-solid fa-gift"></i> </p>
-                    <p id="applePay"><input onclick="choixPaiement()" id="applePayRadio" type="radio" name="paiement" value="apple"> Apple Pay <i class="fa-brands fa-cc-apple-pay"></i></p>
+                    <p id="paypal"><input onclick="choixPaiement()" id="paypalRadio" type="radio" name="paiement" value="paypal">
+                        <label for="paypalRadio">Paypal <i class="fa-brands fa-cc-paypal"></i></label> </p>
+                    <p id="creditCard"><input onclick="choixPaiement()" id="creditCardRadio" type="radio" name="paiement" value="credit">
+                        <label for="creditCardRadio">Carte de crédit <i class="fa-solid fa-credit-card"></i></label></p>
+                    <p id="carteCadeau"><input onclick="choixPaiement()" id="carteCadeauRadio" type="radio" name="paiement" value="gift">
+                        <label for="carteCadeauRadio">Carte cadeau <i class="fa-solid fa-gift"></i></label> </p>
+                    <p id="applePay"><input onclick="choixPaiement()" id="applePayRadio" type="radio" name="paiement" value="apple">
+                        <label for="applePayRadio">Apple Pay <i class="fa-brands fa-cc-apple-pay"></i></label></p>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementPaypal">
                     <button>Payer via<svg width="55" height="30" viewBox="0 0 100 32">
@@ -128,26 +134,39 @@ $chaine = substr($chaine, 0, strlen($chaine)-1);
 
 
                     <script>
-                        function carteValide(){
+                        function carteValide() {
                             var codeCarte = document.getElementById("noCadeau").value,
                                 listeCode = new Array(<?= $chaine ?>),
-                                para = document.getElementById('cadeauValide');
-                            console.log(codeCarte);
-                            if (listeCode.includes(codeCarte)){
-                                para.className = 'valide';
-                                para.innerHTML = '<i class="fa-solid fa-check"></i>';
-                            }else{
-                                para.className='invalide';
-                                para.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                para = document.getElementById('cadeauValide'),
+                                paraSolde = document.getElementById('solde');
+                            if (codeCarte === "") {
+                                para.className = "invisible";
+                                paraSolde.className = 'soldeInvisible';
+                            } else {
+                                if (listeCode.includes(codeCarte)) {
+                                    para.className = 'valide';
+                                    para.innerHTML = '<i class="fa-solid fa-check"></i>';
+                                    paraSolde.className = 'soldeVisible';
+                                    paraSolde.innerHTML = 'Votre solde est de ';
+                                } else {
+                                    para.className = 'invalide';
+                                    para.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                                    paraSolde.className = 'soldeInvisible';
+                                }
                             }
-
                         }
                     </script>
 
+                    <form action="" method="post">
 
-                    <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
-                    <input onchange="carteValide()" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
-                    <p id="cadeauValide" class="invisible"></p>
+                        <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
+                        <input onchange="carteValide()" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
+                        <p id="cadeauValide" class="invisible"></p>
+                        <p id="solde" class="soldeInvisible"></p>
+
+
+
+                    </form>
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
                     <button>Payer via <i class="fab fa-apple-pay"></i></button>

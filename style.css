@@ -1534,9 +1534,17 @@ footer a:hover .remplissage{
     align-items: center;
 }
 
+.moyenPaiementChoix label{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
 .moyenPaiementChoix i{
     padding-left: 10px;
     font-size: 1.4em;
+    cursor: pointer;
 }
 
 .moyenPaiementChoix p input{
@@ -1609,14 +1617,15 @@ input[type=radio] {
 
 
 .cadeauDiv label{
-    margin-right: 5px;
+    margin-right: 7px;
 }
 
 .cadeauDiv input{
     cursor: text;
     height: 25px;
     width: 300px;
-    transition: outline 0.5s;
+    transition: outline 0.3s;
+    position: relative;
 }
 
 .cadeauDiv input:focus{
@@ -1636,8 +1645,49 @@ input[type=radio] {
     color: green;
 }
 
+@keyframes Nope {
+    0%{
+    }
+    12.5%{
+        transform: translateX(2px);
+    }
+    25%{
+        transform: translateX(-2px);
+    }
+    37.5%{
+        transform: translateX(-2px);
+    }
+    50%{
+        transform: translateX(2px);
+    }
+    62.5%{
+        transform: translateX(2px);
+    }
+    75%{
+        transform: translateX(-2px);
+    }
+    87.5%{
+        transform: translateX(-2px);
+    }
+    100%{
+        transform: translateX(2px);
+    }
+
+}
+
 .invalide{
     color: red;
+    animation: 0.25s Nope linear;
+}
+
+.soldeInvisible{
+    display: none;
+}
+
+.soldeVisible{
+    display: block;
+    position: absolute;
+    margin-top: 100px;
 }
 
 
