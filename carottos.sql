@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 24 mars 2023 à 09:25
+-- Généré le : ven. 07 avr. 2023 à 09:56
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -47,6 +47,44 @@ INSERT INTO `avis` (`idAvis`, `idProduit`, `nbEtoiles`, `txtAvis`, `userAvis`) V
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cartecadeau`
+--
+
+CREATE TABLE `cartecadeau` (
+  `codeCarteCad` varchar(14) NOT NULL,
+  `valeurCarteCad` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `cartecadeau`
+--
+
+INSERT INTO `cartecadeau` (`codeCarteCad`, `valeurCarteCad`) VALUES
+('ABCD-EFGH-IJKL', 20),
+('admin', 100),
+('MNOP-QRST-UVWX', 50);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `codepromo`
+--
+
+CREATE TABLE `codepromo` (
+  `codePromo` varchar(10) NOT NULL,
+  `remisePromo` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `codepromo`
+--
+
+INSERT INTO `codepromo` (`codePromo`, `remisePromo`) VALUES
+('TEST10', 10);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `commande`
 --
 
@@ -62,7 +100,9 @@ CREATE TABLE `commande` (
 --
 
 INSERT INTO `commande` (`idCommande`, `dateCommande`, `idUser`, `idPtLiv`) VALUES
-(1, '2023-03-22', 3, 4);
+(1, '2023-03-22', 3, 4),
+(3, '2023-03-28', 3, 6),
+(4, '2023-03-28', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -82,7 +122,11 @@ CREATE TABLE `contenu` (
 
 INSERT INTO `contenu` (`idProduit`, `idCommande`, `qteProd`) VALUES
 (1, 1, 3),
-(3, 1, 2);
+(1, 3, 0.7),
+(2, 3, 25),
+(3, 1, 2),
+(3, 3, 2.6),
+(3, 4, 2.3);
 
 -- --------------------------------------------------------
 
@@ -105,9 +149,9 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`id`, `libelle`, `prix`, `description`, `joursAvantLivraison`, `img`, `QteStock`) VALUES
-(1, 'Carottes Blanches', 4.3, 'Les carottes blanches sont spécialement riches en fibres, nutriments qui font d’elles un aliment excellent pour la santé. La qualité de leurs nutriments rend les carottes blanches bénéfiques à notre corps. Par la présence en grande quantité de fibres, elles sont très bonnes pour le transit et permettent de prévenir du diabète et du cholestérol et de lutter contre la constipation.', 2, 'images/produits/carottesBlanches.jpg', 14),
+(1, 'Carottes Blanches', 4.3, 'Les carottes blanches sont spécialement riches en fibres, nutriments qui font d’elles un aliment excellent pour la santé. La qualité de leurs nutriments rend les carottes blanches bénéfiques à notre corps. Par la présence en grande quantité de fibres, elles sont très bonnes pour le transit et permettent de prévenir du diabète et du cholestérol et de lutter contre la constipation.', 2, 'images/produits/carottesBlanches.jpg', 8),
 (2, 'Carottes Jaunes', 2.99, 'Il s\'agit d\'une variété de carotte presque oubliée, mais cultivée à nouveau pour son caractère original et son goût fin. Préférez-la en crudités où elle révèle toutes ses saveurs.', 3, 'images/produits/carottesJaunes.jpg', 0),
-(3, 'Carottes Touchons', 3.9, 'La Carotte Touchon est une variété précoce, recommandée pour culture de printemps produisant des racines demi-longue et droite, sans cœur à la chair très ferme reconnue d\'un goût exceptionnel.  ', 45, 'images/produits/carottesTouchons.jpg', 25);
+(3, 'Carottes Touchons', 3.9, 'La Carotte Touchon est une variété précoce, recommandée pour culture de printemps produisant des racines demi-longue et droite, sans cœur à la chair très ferme reconnue d\'un goût exceptionnel.  ', 45, 'images/produits/carottesTouchons.jpg', 20);
 
 -- --------------------------------------------------------
 
@@ -161,7 +205,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`idUser`, `login`, `password`, `nomUser`, `prenomUser`, `dateNaissance`, `villeUser`, `mailUser`, `admin`) VALUES
 (3, 'admin', '$2y$10$.WlAFtVl9j4zX40dswM0n.xouWaLXwTtGKLMZtEHWY131cWln0S5y', 'Admin', 'Admin', '2023-03-10', 'Poitiers', 'admin.admin@admin.com', 1),
-(6, 'jtest', '$2y$10$bhwe8EvxEJj2jWChAIL8Zu0rAELcftFCH3JiRXpa4jXx9CDSH0ic2', 'Testeur', 'Josh', '2004-01-08', 'Besançon', 'josh.test@orange.fr', 0);
+(6, 'jtest', '$2y$10$bhwe8EvxEJj2jWChAIL8Zu0rAELcftFCH3JiRXpa4jXx9CDSH0ic2', 'Testeur', 'Josh', '2004-01-08', 'Besançon', 'josh.test@orange.fr', 0),
+(7, 'racinet', '$2y$10$/c89AI5MGTduvPKeeFveYO/GlHicv6lVg/I6zHPtQnHQsKVvUXYcC', 'Racine', 'Tess', '2006-02-17', 'Fraisans', 'tess.racine@gmail.com', 0);
 
 --
 -- Index pour les tables déchargées
@@ -173,6 +218,18 @@ INSERT INTO `users` (`idUser`, `login`, `password`, `nomUser`, `prenomUser`, `da
 ALTER TABLE `avis`
   ADD PRIMARY KEY (`idAvis`),
   ADD KEY `FK_avis_produits` (`idProduit`);
+
+--
+-- Index pour la table `cartecadeau`
+--
+ALTER TABLE `cartecadeau`
+  ADD PRIMARY KEY (`codeCarteCad`);
+
+--
+-- Index pour la table `codepromo`
+--
+ALTER TABLE `codepromo`
+  ADD PRIMARY KEY (`codePromo`);
 
 --
 -- Index pour la table `commande`
@@ -222,7 +279,7 @@ ALTER TABLE `avis`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
@@ -240,7 +297,7 @@ ALTER TABLE `ptlivraisons`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
