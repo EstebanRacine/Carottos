@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
             $_SESSION['remise'] = $_POST['remise'];
             $_SESSION['prixTotal'] = $_POST['newPrixTotal'];
         }
+//        ENVOYER SUR PAGE CHOIX MONTANT UTILISE
         header('Location: index.php');
     }
 
@@ -112,6 +113,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
             $dateCredit = $_POST['dateCredit'];
         }else{
             $erreurs['dateCredit'] = "<p class='Rouge'>Veuillez remplir le champ Date d'expiration</p>";
+        }
+
+        if(empty($erreurs)){
+//            PASSER SUR MESSAGE VALIDATION ET ENREGISTRER COMMANDE
         }
     }
 }
@@ -328,7 +333,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                         }
                     </script>
 
-                    <form action="" method="post">
+<!--                    <form action="" method="post">-->
 
                         <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
                         <input onchange="carteValide()" value="<?= $codeCarte ?>" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
@@ -336,7 +341,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                         <button type="submit" name="boutonCadeau" class="boutonCadeauInvisible" id="boutonCadeau" value="1">Voir le solde</button>
 
 
-                    </form>
+<!--                    </form>-->
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
                     <button>Payer via <i class="fab fa-apple-pay"></i></button>
