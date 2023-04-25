@@ -129,6 +129,14 @@ function addCommande($idUser, $idLiv){
     $requete->execute();
 }
 
+function getIdLastCommandeByIdUser($idUser){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT MAX(idCommande) AS id FROM commande WHERE idUser = :id");
+    $requete->bindValue('id', $idUser);
+    $requete->execute();
+    return $requete->fetch(PDO::FETCH_COLUMN);
+}
+
 function getCommandeByUserId($id){
     $connexion = createConnexion();
     $requete = $connexion->prepare("SELECT * FROM commande WHERE idUser = :idUser");
@@ -139,6 +147,15 @@ function getCommandeByUserId($id){
 
 
 //CONTENU COMMANDE
+
+function addContenu($id, $commande, $quantite){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("INSERT INTO contenu(idProduit, idCommande, qteProd) VALUES (:id, :commande, :quantite)");
+    $requete->bindValue('id', $id);
+    $requete->bindValue('commande', $commande);
+    $requete->bindValue('quantite', $quantite);
+    $requete->execute();
+}
 
 function getCommandeByIdCommande($idCommande){
     $connexion = createConnexion();
@@ -199,6 +216,14 @@ function getPrixByCodeCarteCadeau($code){
     return $requete->fetch(PDO::FETCH_COLUMN);
 }
 
+function soustraireMontant($code, $montant){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("UPDATE cartecadeau SET valeurCarteCad = valeurCarteCad - :montant WHERE codeCarteCad = :code");
+    $requete->bindValue('montant', $montant);
+    $requete->bindValue('code', $code);
+    $requete->execute();
+}
+
 //CODE PROMO
 
 function getAllCodePromo(){
@@ -215,3 +240,5 @@ function getRemiseByCode($code){
     $requete->execute();
     return $requete->fetch(PDO::FETCH_COLUMN);
 }
+
+var_dump(getIdLastCommandeByIdUser(3));

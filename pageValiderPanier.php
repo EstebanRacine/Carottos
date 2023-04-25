@@ -3,6 +3,7 @@ include_once "BDD/requetes.php";
 
 session_start();
 
+print_r($_SESSION);
 
 if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
@@ -117,6 +118,13 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
         if(empty($erreurs)){
 //            PASSER SUR MESSAGE VALIDATION ET ENREGISTRER COMMANDE
+            addCommande( $_SESSION['user']['id'], $_POST['selectLiv']);
+            $idCommande = getIdLastCommandeByIdUser($_SESSION['user']['id']);
+            foreach ($_SESSION['panier'] as $idProd=>$quantProd){
+                addContenu($idProd, $idCommande, $quantProd);
+            }
+            unset($_SESSION['panier']);
+            header("Location: ancienPanier.php?idPanier=$idCommande");
         }
     }
 }
@@ -333,15 +341,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                         }
                     </script>
 
-<!--                    <form action="" method="post">-->
-
                         <label for="noCadeau"> <i class="fa-solid fa-gift"></i> </label>
                         <input onchange="carteValide()" value="<?= $codeCarte ?>" type="text" placeholder="N° de la carte" name="noCadeau" id="noCadeau">
                         <p id="cadeauValide" class="invisible"></p>
                         <button type="submit" name="boutonCadeau" class="boutonCadeauInvisible" id="boutonCadeau" value="1">Voir le solde</button>
 
-
-<!--                    </form>-->
                 </div>
                 <div class="affichageInfosPaiement" id="PaiementApplePay">
                     <button>Payer via <i class="fab fa-apple-pay"></i></button>
