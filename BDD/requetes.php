@@ -121,11 +121,12 @@ function getAllPointsRelais(){
 
 //COMMANDE
 
-function addCommande($idUser, $idLiv){
+function addCommande($idUser, $idLiv, $prixCommande){
     $connexion = createConnexion();
-    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv) VALUES (:idUser, :idLiv)");
+    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv, prixCommande) VALUES (:idUser, :idLiv, :prix)");
     $requete->bindParam('idUser', $idUser);
     $requete->bindParam('idLiv', $idLiv);
+    $requete->bindParam('prix', $prixCommande);
     $requete->execute();
 }
 
@@ -189,14 +190,14 @@ function getNbProdByCommandeId($id){
     return $requete->fetch();
 }
 
-function getPrixTotalCommande($id){
-    $connexion = createConnexion();
-    $requete = $connexion->prepare("SELECT SUM(prix*qteProd) as Total FROM contenu INNER JOIN produits ON produits.id = contenu.idProduit WHERE idCommande = :id");
-    $requete->bindParam('id', $id);
-    $requete->execute();
-    $array =  $requete->fetch(PDO::FETCH_ASSOC);
-    return number_format($array['Total'], 2);
-}
+//function getPrixTotalCommande($id){
+//    $connexion = createConnexion();
+//    $requete = $connexion->prepare("SELECT SUM(prix*qteProd) as Total FROM contenu INNER JOIN produits ON produits.id = contenu.idProduit WHERE idCommande = :id");
+//    $requete->bindParam('id', $id);
+//    $requete->execute();
+//    $array =  $requete->fetch(PDO::FETCH_ASSOC);
+//    return number_format($array['Total'], 2);
+//}
 
 
 //CARTE CADEAU
@@ -240,5 +241,3 @@ function getRemiseByCode($code){
     $requete->execute();
     return $requete->fetch(PDO::FETCH_COLUMN);
 }
-
-var_dump(getIdLastCommandeByIdUser(3));

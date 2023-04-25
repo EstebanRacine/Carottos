@@ -84,7 +84,7 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><?= getPrixTotalCommande($idComm)." €
+                <td><?= number_format($commande['prixCommande'], 2)." €
                 " ?></td>
             </tr>
             </tbody>

@@ -81,7 +81,7 @@ $dateNaiss = date('d / m / Y', strtotime($_SESSION['user']['dateNaiss']));
                     <td><i class="fa-solid fa-basket-shopping"></i></td>
                     <td><?=  getNbProdByCommandeId($commande['idCommande'])[0]." produit(s)"?></td>
                     <td><?= "Le ".date('d/m/Y', strtotime($commande['dateCommande']))?></td>
-                    <td><?= getPrixTotalCommande($commande['idCommande'])." €"?></td>
+                    <td><?= number_format($commande['prixCommande'], 2)." €"?></td>
                 </tr>
 
             <?php

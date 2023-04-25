@@ -118,10 +118,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
         if(empty($erreurs)){
 //            PASSER SUR MESSAGE VALIDATION ET ENREGISTRER COMMANDE
-            addCommande( $_SESSION['user']['id'], $_POST['selectLiv']);
+            addCommande( $_SESSION['user']['id'], $_POST['selectLiv'], $_SESSION['prixTotal']);
             $idCommande = getIdLastCommandeByIdUser($_SESSION['user']['id']);
             foreach ($_SESSION['panier'] as $idProd=>$quantProd){
-                addContenu($idProd, $idCommande, $quantProd);
+                addContenu($idProd, $idCommande, $quantProd['quantite']);
             }
             unset($_SESSION['panier']);
             header("Location: ancienPanier.php?idPanier=$idCommande");
@@ -352,8 +352,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                 </div>
             </div>
 
-
-            <button type="submit" id="validationPanier" name="validerPanier" value="1">Valider votre panier</button>
+            <div class="centerButton">
+                <button type="submit" id="validationPanier" name="validerPanier" value="1">Valider votre panier</button>
+            </div>
         </form>
     </div>
     <script>carteValide()</script>

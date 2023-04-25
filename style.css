@@ -1821,6 +1821,14 @@ input[type=radio] {
     box-shadow: 0 0 20px #77b255;
 }
 
+.centerButton{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*TEST*/
 .test{
     margin: 140px auto;
