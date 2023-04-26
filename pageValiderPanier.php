@@ -3,8 +3,6 @@ include_once "BDD/requetes.php";
 
 session_start();
 
-print_r($_SESSION);
-
 if(!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [];
 }
@@ -65,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     }
 
     if (isset($_POST['codePromoButton'])) {
-        if (isset($_SESSION['remise'])){
+        if (($_SESSION['remise'] <> 0)){
             $erreurs['codePromo'] = "<p class='Rouge'>Vous avez déjà utilisé un code promo</p>"."<button type='submit' name='annulerRemise' class='buttonPromo annulerRemise'>Annuler la remise</button>" ;
         }
         if (!empty(trim($_POST['codePromo']))) {
@@ -206,10 +204,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                         <p id="nomPrixTotal"><span class="VertContact">P</span>rix Total </p>
                         <p> <?= $_SESSION['prixTotal'] ?> € </p>
                         <?php
-                        if ($messagePromo != "" && !isset($_SESSION['remise'])){
+                        if ($messagePromo != "" && ($_SESSION['remise']==0)){
                             $remise = $_SESSION['prixTotal']*($remise/100);
+                            $remise = round($remise, 2);
                             echo "<p class='Rouge remise'> - ".$remise." €</p>";
-                            $newPrix = $_SESSION['prixTotal']-$remise;
+                            $newPrix = round($_SESSION['prixTotal']-$remise, 2);
                             echo "<p class='prixPostRemise'> ". $newPrix ." € </p>";
                             echo  "<input type='text' name='remise' hidden value=$remise>";
                             echo  "<input type='text' name='newPrixTotal' hidden value=$newPrix>";
