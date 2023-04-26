@@ -20,6 +20,10 @@ if (!isset($_SESSION['isCo'])){
     $_SESSION['isCo'] = false;
 }
 
+if (!isset($_SESSION['remise'])){
+    $_SESSION['remise'] = 0;
+}
+
 $listePtLivraison = getAllPointsRelais();
 $codeCarteCadeau = getAllCodeCarteCadeau();
 $codeCarte = "";
@@ -118,7 +122,16 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
         if(empty($erreurs)){
 //            PASSER SUR MESSAGE VALIDATION ET ENREGISTRER COMMANDE
-            addCommande( $_SESSION['user']['id'], $_POST['selectLiv'], $_SESSION['prixTotal']);
+
+            if (isset($_POST['newPrixTotal'])){
+                $_SESSION['prixTotal'] = $_POST['newPrixTotal'];
+            }
+
+            if (isset($_POST['remise'])){
+                $_SESSION['remise'] = $_POST['remise'];
+            }
+
+            addCommande( $_SESSION['user']['id'], $_POST['selectLiv'], $_SESSION['prixTotal'], $_SESSION['remise']);
             $idCommande = getIdLastCommandeByIdUser($_SESSION['user']['id']);
             foreach ($_SESSION['panier'] as $idProd=>$quantProd){
                 addContenu($idProd, $idCommande, $quantProd['quantite']);

@@ -121,12 +121,13 @@ function getAllPointsRelais(){
 
 //COMMANDE
 
-function addCommande($idUser, $idLiv, $prixCommande){
+function addCommande($idUser, $idLiv, $prixCommande, $remise){
     $connexion = createConnexion();
-    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv, prixCommande) VALUES (:idUser, :idLiv, :prix)");
+    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv, prixCommande, remiseCommande) VALUES (:idUser, :idLiv, :prix, :remise)");
     $requete->bindParam('idUser', $idUser);
     $requete->bindParam('idLiv', $idLiv);
     $requete->bindParam('prix', $prixCommande);
+    $requete->bindParam('remise', $remise);
     $requete->execute();
 }
 

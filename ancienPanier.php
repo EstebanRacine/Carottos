@@ -83,9 +83,14 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td><?= number_format($commande['prixCommande'], 2)." €
-                " ?></td>
+                <?php
+                if ($commande['remiseCommande'] <> 0 ){
+                    echo "<td class='Rouge'> - ". number_format($commande['remiseCommande'], 2)."</td>";
+                }else{
+                    echo "<td></td>";
+                }
+                ?>
+                <td><?= number_format($commande['prixCommande'], 2)." €" ?></td>
             </tr>
             </tbody>
         </table>
