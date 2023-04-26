@@ -137,6 +137,10 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                 addContenu($idProd, $idCommande, $quantProd['quantite']);
             }
             unset($_SESSION['panier']);
+            unset($_SESSION['prixTotal']);
+            if (isset($_SESSION['remise'])){
+                unset($_SESSION['remise']);
+            }
             header("Location: ancienPanier.php?idPanier=$idCommande");
         }
     }
