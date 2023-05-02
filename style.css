@@ -662,6 +662,34 @@ footer a:hover .remplissage{
     padding-top: 8px;
 }
 
+.infosSala a{
+    margin-top: 1cm;
+    width: 100%;
+    padding: 10px 5px;
+    background-color: #f4900c;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    border: 2px solid #77b255;
+    height: max-content;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.infosSala a:hover{
+    background-color: #77b255;
+    border: 2px solid #f4900c;
+}
+
+.infosSala a i{
+    font-size: 2em;
+    cursor: pointer;
+}
+
 #nomSala:first-letter{
     color: #77b255;
 }
