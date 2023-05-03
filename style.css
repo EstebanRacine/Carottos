@@ -297,7 +297,7 @@ footer a:hover .remplissage{
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3fr max-content max-content max-content;
+    grid-template-rows: 3fr 75px max-content max-content;
     align-items: center;
     background-color: darkorange;
     border: 2px white solid;
@@ -324,6 +324,7 @@ footer a:hover .remplissage{
 
 .nomCard{
     grid-column: 1/-1;
+    height: 100%;
     padding: 10px 0;
     font-weight: bold;
     width: 80%;
@@ -347,6 +348,10 @@ footer a:hover .remplissage{
     width: 100%;
     text-align: center;
     margin: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .livraisonCard p{
