@@ -46,7 +46,8 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
 
     <div class="ancienPanier">
         <a href="pageUser.php" id="back" class="retourPageUserFromAncienPanier"><i class="fa-solid fa-arrow-left"></i></a>
-        <h1>Votre panier du <?= $datePanier ?></h1>
+        <h1>Votre commande du <?= $datePanier ?></h1>
+        <h3>Livraison le <?= $commande['dateLivraison'] ?></h3>
         <table>
             <thead>
             <th></th>
@@ -85,7 +86,7 @@ $datePanier = ecritureDateLettreViaBDD($commande['dateCommande']);
                 <td></td>
                 <?php
                 if ($commande['remiseCommande'] <> 0 ){
-                    echo "<td class='Rouge'> - ". number_format($commande['remiseCommande'], 2)."</td>";
+                    echo "<td class='Rouge'> - ". number_format($commande['remiseCommande'], 2)." € </td>";
                 }else{
                     echo "<td></td>";
                 }

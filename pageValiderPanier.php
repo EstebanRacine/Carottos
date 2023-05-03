@@ -1,5 +1,6 @@
 <?php
 include_once "BDD/requetes.php";
+include_once "BDD/fonctionsDiverses.php";
 
 session_start();
 
@@ -33,6 +34,16 @@ $titulaireCredit = null;
 $numCredit = null;
 $cryptoCredit = null;
 $dateCredit = null;
+
+$nbJoursLiv = 0;
+foreach ($_SESSION['panier'] as $idProd => $QteProd){
+    if ($nbJoursLiv < getLivByIdProd($idProd)){
+        $nbJoursLiv = getLivByIdProd($idProd);
+    }
+}
+$dateLiv = dateLivraison($nbJoursLiv);
+
+
 
 $chaine = '';
 foreach ($codeCarteCadeau as $code){
@@ -94,6 +105,11 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     }
 
     if (isset($_POST['validerPanier'])){
+
+        if ($_POST['selectLiv'] == 0){
+            $erreurs['lieuLiv'] = "Veuillez choisir un lieu de livraison";
+        }
+
         if (!empty(trim($_POST['tituCredit']))){
             $titulaireCredit = $_POST['tituCredit'];
         }else{
@@ -129,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                 $_SESSION['remise'] = $_POST['remise'];
             }
 
-            addCommande( $_SESSION['user']['id'], $_POST['selectLiv'], $_SESSION['prixTotal'], $_SESSION['remise']);
+            addCommande( $_SESSION['user']['id'], $_POST['selectLiv'], $_SESSION['prixTotal'], $_SESSION['remise'], $_POST['dateLivraison']);
             $idCommande = getIdLastCommandeByIdUser($_SESSION['user']['id']);
             foreach ($_SESSION['panier'] as $idProd=>$quantProd){
                 addContenu($idProd, $idCommande, $quantProd['quantite']);
@@ -236,6 +252,15 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                 <div class="infosLieuLiv">
                     <script src="fichierCommuns/affichageDivLieuChoisi.js"></script>
                     <h2> <span class="VertContact">L</span>ieu de livraison</h2>
+
+                    <h3>Livraison le <?= $dateLiv ?></h3>
+                    <input type="text" hidden value="<?= $dateLiv ?>" name="dateLivraison">
+                    <?php
+                    if (isset($erreurs['lieuLiv'])){
+                        echo "<p class='Rouge'>{$erreurs['lieuLiv']}</p>";
+                    }
+                    ?>
+
                         <select name="selectLiv" class="selectLiv">
                             <option value="0">Veuillez choisir un lieu</option>
                             <?php

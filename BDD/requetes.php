@@ -20,6 +20,13 @@ function getProduitById($id):array{
     return $requete->fetch(PDO::FETCH_ASSOC);
 }
 
+function getLivByIdProd($id){
+    $connexion = createConnexion();
+    $requete = $connexion->prepare("SELECT joursAvantLivraison FROM produits WHERE id = :id");
+    $requete->bindValue('id', $id);
+    $requete->execute();
+    return $requete->fetchColumn();
+}
 
 function changeQteStock($id, $qte, $signe){
     $connexion = createConnexion();
@@ -121,13 +128,14 @@ function getAllPointsRelais(){
 
 //COMMANDE
 
-function addCommande($idUser, $idLiv, $prixCommande, $remise){
+function addCommande($idUser, $idLiv, $prixCommande, $remise, $dateLiv){
     $connexion = createConnexion();
-    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv, prixCommande, remiseCommande) VALUES (:idUser, :idLiv, :prix, :remise)");
+    $requete = $connexion->prepare("INSERT INTO commande(idUser, idPtLiv, prixCommande, remiseCommande, dateLivraison) VALUES (:idUser, :idLiv, :prix, :remise, :dateLiv)");
     $requete->bindParam('idUser', $idUser);
     $requete->bindParam('idLiv', $idLiv);
     $requete->bindParam('prix', $prixCommande);
     $requete->bindParam('remise', $remise);
+    $requete->bindParam('dateLiv', $dateLiv);
     $requete->execute();
 }
 
@@ -146,6 +154,7 @@ function getCommandeByUserId($id){
     $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 
 //CONTENU COMMANDE
@@ -242,3 +251,4 @@ function getRemiseByCode($code){
     $requete->execute();
     return $requete->fetch(PDO::FETCH_COLUMN);
 }
+

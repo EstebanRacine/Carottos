@@ -41,7 +41,7 @@ nav{
     width: 100%;
     height: 120px;
     grid-template-rows: 120px;
-    grid-template-columns: 25vw repeat(4, minmax(170px, 1fr)) 75px 75px;
+    grid-template-columns: 20vw repeat(4, minmax(170px, 1fr)) 75px 75px;
     background-color: gray;
     font-family: MoreSugarRegular, sans-serif;
     color: white;
@@ -50,13 +50,19 @@ nav{
     z-index: 2;
 }
 
+#navImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-nav > img{
+nav a > img{
     aspect-ratio: 236/100;
     object-fit: contain;
     width: 100%;
+    cursor: pointer;
     height: 100%;
-    padding: 3px 0;
+    /*padding: 3px 0;*/
     grid-row: 1/-1;
     grid-column: 1/2;
 }
@@ -279,8 +285,9 @@ footer a:hover .remplissage{
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(350px, max-content));;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-gap: 13px;
-    margin: 150px auto auto;
+    column-gap: 13px;
+    row-gap: 17px;
+    margin: 150px auto 130px;
 }
 
 
@@ -327,7 +334,6 @@ footer a:hover .remplissage{
     text-shadow: black 1px 1px 3px;
 }
 
-
 .livraisonCard, .prixCard{
     padding: 8px 0;
 }
@@ -338,7 +344,8 @@ footer a:hover .remplissage{
 
 
 .card p{
-    width: max-content;
+    width: 100%;
+    text-align: center;
     margin: auto;
 }
 
@@ -1373,10 +1380,16 @@ footer a:hover .remplissage{
     margin-top: 40px;
 }
 
+.ancienPanier h3{
+    text-align: center;
+    color: #77b255;
+    margin-top: 15px;
+}
+
 .ancienPanier table{
     border-collapse: collapse;
     width: 70%;
-    margin: 70px auto auto;
+    margin: 30px auto auto;
 }
 
 .ancienPanier table thead th{
@@ -1570,6 +1583,12 @@ footer a:hover .remplissage{
     grid-template-columns: repeat(2, 1fr);
 }
 
+.infosLieuLiv h3{
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #77b255;
+}
+
 .selectLiv{
     background-color: #f1ab56;
     border-radius: 10px;
@@ -1581,7 +1600,7 @@ footer a:hover .remplissage{
     font-weight: bold;
     padding: 3px;
     font-size: 1em;
-    margin: 1cm auto auto;
+    margin: 20px auto auto;
     height: 0.8cm;
 }
 
