@@ -222,9 +222,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
                         <?php
                         if ($messagePromo != "" && ($_SESSION['remise']==0)){
                             $remise = $_SESSION['prixTotal']*($remise/100);
-                            $remise = round($remise, 2);
+                            $remise = number_format($remise, 2);
                             echo "<p class='Rouge remise'> - ".$remise." €</p>";
-                            $newPrix = round($_SESSION['prixTotal']-$remise, 2);
+                            $newPrix = number_format($_SESSION['prixTotal']-$remise, 2);
                             echo "<p class='prixPostRemise'> ". $newPrix ." € </p>";
                             echo  "<input type='text' name='remise' hidden value=$remise>";
                             echo  "<input type='text' name='newPrixTotal' hidden value=$newPrix>";

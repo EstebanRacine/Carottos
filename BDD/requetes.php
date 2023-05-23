@@ -149,7 +149,7 @@ function getIdLastCommandeByIdUser($idUser){
 
 function getCommandeByUserId($id){
     $connexion = createConnexion();
-    $requete = $connexion->prepare("SELECT * FROM commande WHERE idUser = :idUser");
+    $requete = $connexion->prepare("SELECT * FROM commande WHERE idUser = :idUser ORDER BY dateCommande DESC");
     $requete->bindParam('idUser', $id);
     $requete->execute();
     return $requete->fetchAll(PDO::FETCH_ASSOC);
